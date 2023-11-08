@@ -1,0 +1,3 @@
+[submodule "themes/hexo-theme-reimu"]
+	path = themes/hexo-theme-reimu
+	url = https://github.com/D-Sketon/hexo-theme-reimu.git
