@@ -2,6 +2,7 @@ title: openeuler安装openGauss（单节点安装）+【本机远程连接openGa
 date: 2023-11-22 21:12:56
 tags:
 ---
+
 # 准备条件
 
 首先我们需要准备一台带有openeuler操作系统的服务器，然后我们需要一个能够访问服务器的一个工具，这里我是用的是windows自带的openSSH服务，其实你用什么都可以，看你个人的喜好
