@@ -1,0 +1,1114 @@
+  <!DOCTYPE html>
+  <html lang="zh-CN"  
+      data-theme-mode="auto"
+  >
+  <head>
+  <meta charset="utf-8">
+  
+  
+  
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_4k4bc36ef96';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功 (*^▽^*)","en":"Copy successfully (*^▽^*)"},"fail":{"zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ","en":"Copy failed (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://ryanzhang66.github.io';window.REIMU_CONFIG.i18n_languages = ["en"];</script>
+  <title>
+    Hi3861嵌软开发全流程 | 欢迎来到Ryanzhang66の小窝
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media='all'">
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_4k4bc36ef96.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+    <meta name="description" content="纭欢瀛︿範浠撳簱 鍓嶈█ [Hi3861鐨勫涔狅紙OpenHarmony鍗楀悜寮€鍙戯級](#hi3861鐨勫涔爋penharmony鍗楀悜寮€鍙? [windows涓嬬殑DevEco Device Tool寮€鍙戠幆澧冩惌寤篯(#windows涓嬬殑deveco-device-tool寮€鍙戠幆澧冩惌寤? [鍒涘缓宸ョ▼骞惰幏鍙栨簮鐮乚(#鍒涘缓宸ョ▼骞惰幏鍙栨簮鐮? 闄勶細瀵煎叆SDK">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hi3861嵌软开发全流程">
+<meta property="og:url" content="https://ryanzhang66.github.io/2026/04/08/hi3861-embedded-soft-dev-full-process/index.html">
+<meta property="og:site_name" content="欢迎来到Ryanzhang66の小窝">
+<meta property="og:description" content="纭欢瀛︿範浠撳簱 鍓嶈█ [Hi3861鐨勫涔狅紙OpenHarmony鍗楀悜寮€鍙戯級](#hi3861鐨勫涔爋penharmony鍗楀悜寮€鍙? [windows涓嬬殑DevEco Device Tool寮€鍙戠幆澧冩惌寤篯(#windows涓嬬殑deveco-device-tool寮€鍙戠幆澧冩惌寤? [鍒涘缓宸ョ▼骞惰幏鍙栨簮鐮乚(#鍒涘缓宸ョ▼骞惰幏鍙栨簮鐮? 闄勶細瀵煎叆SDK">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ryanzhang66.github.io/%E9%8D%A5%E6%83%A7%E7%B0%A5/1.png">
+<meta property="og:image" content="https://ryanzhang66.github.io/%E9%8D%A5%E6%83%A7%E7%B0%A5/2.png">
+<meta property="og:image" content="https://ryanzhang66.github.io/%E9%8D%A5%E6%83%A7%E7%B0%A5/3.png">
+<meta property="og:image" content="https://ryanzhang66.github.io/%E9%8D%A5%E6%83%A7%E7%B0%A5/4.png">
+<meta property="og:image" content="https://ryanzhang66.github.io/%E9%8D%A5%E6%83%A7%E7%B0%A5/5.png">
+<meta property="og:image" content="https://ryanzhang66.github.io/%E9%8D%A5%E6%83%A7%E7%B0%A5/7.png">
+<meta property="og:image" content="https://ryanzhang66.github.io/%E9%8D%A5%E6%83%A7%E7%B0%A5/6.png">
+<meta property="og:image" content="https://ryanzhang66.github.io/%E9%8D%A5%E6%83%A7%E7%B0%A5/8.png">
+<meta property="og:image" content="https://ryanzhang66.github.io/%E9%8D%A5%E6%83%A7%E7%B0%A5/9.png">
+<meta property="og:image" content="https://ryanzhang66.github.io/%E9%8D%A5%E6%83%A7%E7%B0%A5/9.png">
+<meta property="og:image" content="https://ryanzhang66.github.io/%E9%8D%A5%E6%83%A7%E7%B0%A5/10.png">
+<meta property="og:image" content="https://ryanzhang66.github.io/%E9%8D%A5%E6%83%A7%E7%B0%A5/%E5%A6%97%E5%97%98%E7%81%A6%E9%8D%A5?png">
+<meta property="og:image" content="https://ryanzhang66.github.io/%E9%8D%A5%E6%83%A7%E7%B0%A5/11.png">
+<meta property="og:image" content="https://ryanzhang66.github.io/%E9%8D%A5%E6%83%A7%E7%B0%A5/12.png">
+<meta property="og:image" content="https://ryanzhang66.github.io/%E9%8D%A5%E6%83%A7%E7%B0%A5/13.png">
+<meta property="og:image" content="https://ryanzhang66.github.io/%E9%8D%A5%E6%83%A7%E7%B0%A5/14.png">
+<meta property="og:image" content="https://ryanzhang66.github.io/%E9%8D%A5%E6%83%A7%E7%B0%A5/15.png">
+<meta property="og:image" content="https://ryanzhang66.github.io/%E9%8D%A5%E6%83%A7%E7%B0%A5/16.png">
+<meta property="og:image" content="https://ryanzhang66.github.io/%E9%8D%A5%E6%83%A7%E7%B0%A5/17.png">
+<meta property="og:image" content="https://ryanzhang66.github.io/%E9%8D%A5%E6%83%A7%E7%B0%A5/18.png">
+<meta property="og:image" content="https://ryanzhang66.github.io/%E9%8D%A5%E6%83%A7%E7%B0%A5/19.png">
+<meta property="og:image" content="https://ryanzhang66.github.io/%E9%8D%A5%E6%83%A7%E7%B0%A5/26.png">
+<meta property="og:image" content="https://ryanzhang66.github.io/%E9%8D%A5%E6%83%A7%E7%B0%A5/23.png">
+<meta property="og:image" content="https://ryanzhang66.github.io/%E9%8D%A5%E6%83%A7%E7%B0%A5/20.png">
+<meta property="og:image" content="https://ryanzhang66.github.io/%E9%8D%A5%E6%83%A7%E7%B0%A5/21.png">
+<meta property="og:image" content="https://ryanzhang66.github.io/%E9%8D%A5%E6%83%A7%E7%B0%A5/22.png">
+<meta property="og:image" content="https://ryanzhang66.github.io/%E9%8D%A5%E6%83%A7%E7%B0%A5/24.png">
+<meta property="og:image" content="https://ryanzhang66.github.io/%E9%8D%A5%E6%83%A7%E7%B0%A5/25.png">
+<meta property="article:published_time" content="2026-04-08T12:15:00.000Z">
+<meta property="article:modified_time" content="2026-04-08T12:52:12.989Z">
+<meta property="article:author" content="Ryanzhang66">
+<meta property="article:tag" content="Hi3861">
+<meta property="article:tag" content="OpenHarmony">
+<meta property="article:tag" content="嵌入式">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ryanzhang66.github.io/%E9%8D%A5%E6%83%A7%E7%B0%A5/1.png">
+    <link rel="alternate" href="/atom.xml" title="欢迎来到Ryanzhang66の小窝" type="application/atom+xml">
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx/1oA/0l8ysE" crossorigin="anonymous">
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
+
+    <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/aplayer@1.10.1/dist/APlayer.min.css" integrity="sha384-tLMkTWh2pfXNWGFlUS0w1TFtRG5xZ9lPWFOooj+vDDLIL+xBGQU/voDBY5XE2lVh" crossorigin="anonymous">
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+  <body>
+      <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+      </div>
+      <div class="loading-word">少女祈祷中...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var loaderEl = document.getElementById('loader');
+    var startLoading = () => {
+      time = Date.now();
+      loaderEl.classList.remove("loading");
+    }
+    var hideLoader = () => {
+      document.body.style.overflow = 'auto';
+      loader.classList.add('loading');
+    };
+
+    var endLoading = () => {
+      if (!time) {
+        hideLoader();
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          hideLoader();
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    loaderEl.addEventListener('click', endLoading);
+  </script>
+<div id="copy-tooltip"></div>
+<div id="heatmap-tooltip"></div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation">
+        <a class="main-nav-link-wrap" href="/">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">首页</span>
+        </span>
+        <a class="main-nav-link-wrap" href="/archives">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">归档</span>
+        </span>
+        <a class="main-nav-link-wrap" href="/about">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">关于</span>
+        </span>
+        <a class="main-nav-link-wrap" href="/friend">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">友链</span>
+        </span>
+    <a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation">
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅" aria-label="RSS 订阅" target="_blank"></a>
+  </nav>
+    <nav id="i18n-nav" aria-label="Language selection">
+      <div class="custom-dropdown">
+        <div class="select-selected" id="select-selected" role="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Language menu">
+          <span id="nav-language-btn" class="nav-icon" style="padding: 0 20px 0 0"></span>
+          <span id="selected-lang">简体中文</span>
+        </div>
+        <ul class="select-items" id="select-items" role="listbox" aria-label="Languages">
+            <li data-value="zh-CN" role="option" class="selected" aria-selected="true">简体中文</li>
+            <li data-value="en" role="option" aria-selected="false">English</li>
+        </ul>
+      </div>
+      <script>
+        var selectSelected = document.getElementById("select-selected");
+        var selectedLang = document.getElementById("selected-lang");
+        var selectItems = document.getElementById("select-items");
+        var selectOptions = selectItems.querySelectorAll("li");
+
+        selectSelected.addEventListener("click", () => {
+          selectItems.classList.toggle("show");
+          var expanded = selectSelected.getAttribute("aria-expanded") === "true";
+          selectSelected.setAttribute("aria-expanded", (!expanded).toString());
+        });
+
+        selectOptions.forEach((item) => {
+          item.addEventListener("click", () => {
+            const langMap = {};
+              langMap['zh-CN'] = '/2026/04/08/hi3861-embedded-soft-dev-full-process/';
+              langMap['en'] = '/en/2026/04/08/hi3861-embedded-soft-dev-full-process/';
+            selectedLang.textContent = item.textContent;
+            selectItems.classList.remove("show");
+            selectOptions.forEach((option) => {
+              option.classList.remove("selected");
+            });
+            item.classList.add("selected");
+            window.location = langMap[item.dataset.value];
+          });
+        });
+
+        document.addEventListener("click", (event) => {
+          if (!event.target.closest(".custom-dropdown")) {
+            selectItems.classList.remove("show");
+            selectSelected.setAttribute("aria-expanded", "false");
+          }
+        });
+      </script>
+    </nav>
+</div>
+<header id="header" aria-label="Site header">
+        <picture>
+        </picture>
+          <img  fetchpriority="high" src="/images/banner.webp" alt="Hi3861嵌软开发全流程">
+  <div id="header-outer">
+    <div id="header-title">
+          <span id="logo">
+            <h1 data-aos="slide-up">Hi3861嵌软开发全流程</h1>
+          </span>
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+        </h2>
+    </div>
+  </div>
+</header>
+
+        <div id="content" aria-label="Page content" class="sidebar-left"  >
+          <aside id="sidebar" aria-label="Sidebar">
+  <div class="sidebar-wrapper-container sticky">
+      <div id="aplayer" theme="var(--color-link)" data-aos="fade-up"></div>
+  <div class="sidebar-wrapper">
+    <div class="sidebar-wrap" data-aos="fade-up">
+          <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BA%AD%EE%83%BF%E6%AC%A2%E7%80%9B%EF%B8%BF%E7%AF%84%E6%B5%A0%E6%92%B3%E7%B0%B1"><span class="toc-number">1.</span> <span class="toc-text">纭欢瀛︿範浠撳簱</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%8D%93%E5%B6%88%E2%96%88"><span class="toc-number">1.1.</span> <span class="toc-text">鍓嶈█</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hi3861%E9%90%A8%E5%8B%AB%EE%84%9F%E6%B6%94%E7%8B%85%E7%B4%99OpenHarmony%E9%8D%97%E6%A5%80%E6%82%9C%E5%AF%AE%E2%82%AC%E9%8D%99%E6%88%AF%E7%B4%9A"><span class="toc-number">1.2.</span> <span class="toc-text">Hi3861鐨勫涔狅紙OpenHarmony鍗楀悜寮€鍙戯級</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#windows%E6%B6%93%E5%AC%AC%E6%AE%91DevEco-Device-Tool%E5%AF%AE%E2%82%AC%E9%8D%99%E6%88%A0%E5%B9%86%E6%BE%A7%E5%86%A9%E6%83%8C%E5%AF%A4"><span class="toc-number">1.2.1.</span> <span class="toc-text">windows涓嬬殑DevEco Device Tool寮€鍙戠幆澧冩惌寤?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%8D%92%E6%B6%98%E7%BC%93%E5%AE%B8%E3%83%A7%E2%96%BC%E9%AA%9E%E6%83%B0%E5%B9%8F%E9%8D%99%E6%A0%A8%E7%B0%AE%E9%90%AE"><span class="toc-number">1.2.2.</span> <span class="toc-text">鍒涘缓宸ョ▼骞惰幏鍙栨簮鐮?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%84%E5%8B%B6%E7%B4%B0%E7%80%B5%E7%85%8E%E5%8F%86SDK%E9%8D%9C%E5%B2%80%E7%B4%AA%E7%92%87%E6%88%9D%E4%BC%90%E9%8D%8F%E5%B3%B0%E5%AF%98"><span class="toc-number">1.2.3.</span> <span class="toc-text">闄勶細瀵煎叆SDK鍜岀紪璇戝伐鍏峰寘</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A5%A0%E5%B2%83%E7%98%89%E9%90%9C%EE%88%9A%EE%95%A8"><span class="toc-number">1.2.4.</span> <span class="toc-text">楠岃瘉鐜</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B9%87%EE%82%A6%E2%82%AC%E7%86%B7%E5%8F%86%E9%97%82"><span class="toc-number">1.3.</span> <span class="toc-text">蹇€熷叆闂?</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%AD%EE%86%BC%E7%95%BE%E9%90%A9%EE%86%BC%E7%B6%8D%E7%BC%81%E6%92%B4%E7%80%AF"><span class="toc-number">1.3.1.</span> <span class="toc-text">纭畾鐩綍缁撴瀯</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%82%E6%A0%A7%E5%95%93%E6%B6%93%E6%B0%AC%E5%A7%9F%E6%B5%A0g%E7%88%9C"><span class="toc-number">1.3.2.</span> <span class="toc-text">缂栧啓涓氬姟浠ｇ爜</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A8%A3%E8%AF%B2%E5%A7%9E%E9%8F%82%E6%89%AE%E7%B2%8D%E6%B5%A0"><span class="toc-number">1.3.3.</span> <span class="toc-text">娣诲姞鏂扮粍浠?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%87%EE%86%BD%E6%95%BC%E9%8D%97%E6%9B%9F%E6%BE%98%E9%96%B0%E5%B6%87%E7%96%86%E9%8F%82%E5%9B%A6%E6%AC%A2"><span class="toc-number">1.3.4.</span> <span class="toc-text">淇敼鍗曟澘閰嶇疆鏂囦欢</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%82%E6%A0%AC%E7%98%A7"><span class="toc-number">1.3.5.</span> <span class="toc-text">缂栬瘧</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%90%91%D1%83%E7%B6%8D"><span class="toc-number">1.3.6.</span> <span class="toc-text">鐑у綍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B6%93%E6%8F%92%E5%BD%9B%E9%8F%8C%E3%83%A7%E6%B9%85"><span class="toc-number">1.3.7.</span> <span class="toc-text">涓插彛鏌ョ湅</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hi3861%E9%90%A8%E5%8B%AD%E7%95%9D%E9%8D%97%E6%9B%A0%E7%B4%AA%E7%92%87%E6%88%9E%E7%A5%A6%E7%BB%8B%E5%AC%AD%EE%87%A9%E9%8F%84"><span class="toc-number">1.4.</span> <span class="toc-text">Hi3861鐨勭畝鍗曠紪璇戞祦绋嬭鏄?</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%8F%8B%E5%8B%AB%E7%BC%93%E7%BB%AF%E8%8D%A4%E7%B2%BA"><span class="toc-number">1.4.1.</span> <span class="toc-text">鏋勫缓绯荤粺</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%8F%81%E7%BF%A0%E7%B6%8B%E7%BC%82%E6%A0%AC%E7%98%A7%E5%A8%B4%E4%BD%BA%E2%96%BC"><span class="toc-number">1.4.2.</span> <span class="toc-text">鏁翠綋缂栬瘧娴佺▼</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%81%E5%8B%AA%E6%AC%A2%E9%90%A8%E5%8B%AB%E7%95%BE%E6%B6%94"><span class="toc-number">1.4.3.</span> <span class="toc-text">缁勪欢鐨勫畾涔?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%AE%E2%82%AC%E9%8D%99%E6%88%A6%E6%B8%B6%E7%91%95%E4%BD%B9%E5%B8%89%E9%8E%BB%EF%BC%84%E6%AE%91%E7%BC%82%E6%A0%AC%E7%98%A7%E9%8F%82%E5%9B%A6%E6%AC%A2%E9%8D%90%E5%91%AD%EE%86%90"><span class="toc-number">1.4.4.</span> <span class="toc-text">寮€鍙戦渶瑕佹帉鎻＄殑缂栬瘧鏂囦欢鍐呭</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%84%E5%8B%B6%E7%B4%B0BUILD-gn%E9%8D%92%E5%97%98%E7%80%BD%E9%94%9B%E5%A0%9F%E6%B9%AD%E7%80%B9%E5%B1%BE%E5%9E%9A%E5%AF%B0%E5%91%AF%E7%94%BB%E9%94%9B"><span class="toc-number">1.4.5.</span> <span class="toc-text">闄勶細BUILD.gn鍒嗘瀽锛堟湭瀹屾垚寰呯画锛?</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hi3861%E9%90%A8%E5%8B%AB%E7%86%80%E7%BA%AD%E2%82%AC%E9%8D%90%E5%91%AE%E7%89%B3%E5%AF%AE%E2%82%AC%E9%8D%99"><span class="toc-number">1.5.</span> <span class="toc-text">Hi3861鐨勫熀纭€鍐呮牳寮€鍙?</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%A0%E2%82%AC%E6%B6%94%E5%A0%9F%E6%A7%B8%E9%8D%90%E5%91%AE%E7%89%B3%E9%94%9B"><span class="toc-number">1.5.1.</span> <span class="toc-text">浠€涔堟槸鍐呮牳锛?</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Openharmony%E9%8D%90%E5%91%AE%E7%89%B3"><span class="toc-number">1.5.1.1.</span> <span class="toc-text">Openharmony鍐呮牳</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#LiteOS-M%E9%8D%90%E5%91%AE%E7%89%B3"><span class="toc-number">1.5.1.2.</span> <span class="toc-text">LiteOS-M鍐呮牳</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#KAL%E9%8E%B6%E5%80%9F%E8%96%84%E7%81%9E"><span class="toc-number">1.5.1.2.1.</span> <span class="toc-text">KAL鎶借薄灞?</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%BE%E8%B7%A8%E2%96%BC%E7%BB%A0%EF%BC%84%E6%82%8A"><span class="toc-number">1.5.2.</span> <span class="toc-text">绾跨▼绠＄悊</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%BE%E8%B7%A8%E2%96%BC%E9%90%98%E8%88%B5%E2%82%AC%E4%BD%BA%E6%AE%91%E6%B5%A0%E5%AC%AC%E7%B2%9B"><span class="toc-number">1.5.2.1.</span> <span class="toc-text">绾跨▼鐘舵€佺殑浠嬬粛</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%8D%97%E6%9B%A0%E5%9A%8E%E7%BB%8B%E5%AC%A9%E5%A8%87%E9%90%A2%E3%84%A6%E7%A5%A6%E7%BB%8B"><span class="toc-number">1.5.2.2.</span> <span class="toc-text">鍗曠嚎绋嬩娇鐢ㄦ祦绋?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%BE%B6%E6%B0%B1%E5%9A%8E%E7%BB%8B%E5%AC%A9%E5%A8%87%E9%90%A2%E3%84%A6%E7%A5%A6%E7%BB%8B"><span class="toc-number">1.5.2.3.</span> <span class="toc-text">澶氱嚎绋嬩娇鐢ㄦ祦绋?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%BE%B6%E6%B0%B1%E5%9A%8E%E7%BB%8B%E5%AC%AC%E6%AE%91%E7%81%8F%E4%BD%BD%EE%97%8A"><span class="toc-number">1.5.2.4.</span> <span class="toc-text">澶氱嚎绋嬬殑灏佽</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9D%9E%EE%88%99%E6%AC%A2%E7%80%B9%E6%B0%AD%E6%A4%82%E9%8D%A3"><span class="toc-number">1.5.3.</span> <span class="toc-text">杞欢瀹氭椂鍣?</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9D%9E%EE%88%99%E6%AC%A2%E7%80%B9%E6%B0%AD%E6%A4%82%E9%8D%A3%E3%84%A7%E6%AE%91%E6%B5%A0%E5%AC%AC%E7%B2%9B"><span class="toc-number">1.5.3.1.</span> <span class="toc-text">杞欢瀹氭椂鍣ㄧ殑浠嬬粛</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9D%9E%EE%88%99%E6%AC%A2%E7%80%B9%E6%B0%AD%E6%A4%82%E9%8D%A3%E3%84%A4%E5%A8%87%E9%90%A2%E3%84%A6%E7%A5%A6%E7%BB%8B"><span class="toc-number">1.5.3.2.</span> <span class="toc-text">杞欢瀹氭椂鍣ㄤ娇鐢ㄦ祦绋?</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%9C%E6%8E%93%E6%9E%BC%E9%96%BF"><span class="toc-number">1.5.4.</span> <span class="toc-text">浜掓枼閿?</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%9C%E6%8E%93%E6%9E%BC%E9%96%BF%E4%BD%B7%E7%B2%99%E7%BC%81"><span class="toc-number">1.5.4.1.</span> <span class="toc-text">浜掓枼閿佷粙缁?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%9C%E6%8E%93%E6%9E%BC%E9%96%BF%E4%BD%BA%E6%AE%91%E6%B5%A3%E8%B7%A8%E6%95%A4%E5%A8%B4%E4%BD%BA%E2%96%BC"><span class="toc-number">1.5.4.2.</span> <span class="toc-text">浜掓枼閿佺殑浣跨敤娴佺▼</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%9C%E6%8E%93%E6%9E%BC%E9%96%BF%E4%BD%B9%EE%94%8D%E6%B8%9A%E5%AC%A9%E7%B6%8B%E6%A5%A0"><span class="toc-number">1.5.4.3.</span> <span class="toc-text">浜掓枼閿佹渚嬩綋楠?</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%87%E2%80%B3%E5%BD%BF%E9%96%B2"><span class="toc-number">1.5.5.</span> <span class="toc-text">淇″彿閲?</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B7%87%E2%80%B3%E5%BD%BF%E9%96%B2%E5%BF%8E%E7%B2%99%E7%BC%81"><span class="toc-number">1.5.5.1.</span> <span class="toc-text">淇″彿閲忎粙缁?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B7%87%E2%80%B3%E5%BD%BF%E9%96%B2%E5%BF%95%E6%AE%91%E6%B5%A3%E8%B7%A8%E6%95%A4%E5%A8%B4%E4%BD%BA%E2%96%BC"><span class="toc-number">1.5.5.2.</span> <span class="toc-text">淇″彿閲忕殑浣跨敤娴佺▼</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A8%91%E5%A0%9F%E4%BC%85%E9%97%83%E7%86%B7%E5%9E%AA"><span class="toc-number">1.5.6.</span> <span class="toc-text">娑堟伅闃熷垪</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A8%91%E5%A0%9F%E4%BC%85%E9%97%83%E7%86%B7%E5%9E%AA%E6%B5%A0%E5%AC%AC%E7%B2%9B"><span class="toc-number">1.5.6.1.</span> <span class="toc-text">娑堟伅闃熷垪浠嬬粛</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A8%91%E5%A0%9F%E4%BC%85%E9%97%83%E7%86%B7%E5%9E%AA%E6%B5%A3%E8%B7%A8%E6%95%A4%E5%A8%B4%E4%BD%BA%E2%96%BC"><span class="toc-number">1.5.6.2.</span> <span class="toc-text">娑堟伅闃熷垪浣跨敤娴佺▼</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%92%87%E5%AD%98%E6%A7%91"><span class="toc-number">1.5.7.</span> <span class="toc-text">璇存槑</span></a></li></ol></li></ol></li></ol>
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="Ryanzhang66" class="lazyload">
+  <div class="sidebar-author-name">Ryanzhang66</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">2</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">1</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">3</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+</div>
+</div>
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+    </div>
+  </div>
+  <div class="sidebar-widget">
+  </div>
+  </div>
+</aside>
+
+          <section id="main" aria-label="Main content"><article id="post-hi3861-embedded-soft-dev-full-process" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link icon-calendar" data-aos="zoom-in">
+    <time datetime="2026-04-08T12:15:00.000Z" itemprop="datePublished">2026-04-08</time>
+    <time style="display: none;" id="post-update-time">2026-04-08</time>
+  </span>
+</div>
+
+    </div>
+    
+    <div class="hr-line"></div>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+        <ul>
+<li><a href="#%E7%BA%AD%EE%83%BF%E6%AC%A2%E7%80%9B%EF%B8%BF%E7%AF%84%E6%B5%A0%E6%92%B3%E7%B0%B1">纭欢瀛︿範浠撳簱</a><ul>
+<li><a href="#%E9%8D%93%E5%B6%88%E2%96%88">鍓嶈█</a></li>
+<li>[Hi3861鐨勫涔狅紙OpenHarmony鍗楀悜寮€鍙戯級](#hi3861鐨勫涔爋penharmony鍗楀悜寮€鍙?<ul>
+<li>[windows涓嬬殑DevEco Device Tool寮€鍙戠幆澧冩惌寤篯(#windows涓嬬殑deveco-device-tool寮€鍙戠幆澧冩惌寤?</li>
+<li>[鍒涘缓宸ョ▼骞惰幏鍙栨簮鐮乚(#鍒涘缓宸ョ▼骞惰幏鍙栨簮鐮?</li>
+<li><a href="#%E9%97%84%E5%8B%AB%EE%87%B1%E9%8D%8F%EE%99%B9dk%E9%8D%9C%E5%B2%80%E7%B4%AA%E7%92%87%E6%88%9D%E4%BC%90%E9%8D%8F%E5%B3%B0%E5%AF%98">闄勶細瀵煎叆SDK鍜岀紪璇戝伐鍏峰寘</a></li>
+<li><a href="#%E6%A5%A0%E5%B2%83%E7%98%89%E9%90%9C%EE%88%9A%EE%95%A8">楠岃瘉鐜</a></li>
+</ul>
+</li>
+<li>[蹇€熷叆闂╙(#蹇€熷叆闂?<ul>
+<li><a href="#%E7%BA%AD%EE%86%BC%E7%95%BE%E9%90%A9%EE%86%BC%E7%B6%8D%E7%BC%81%E6%92%B4%E7%80%AF">纭畾鐩綍缁撴瀯</a></li>
+<li><a href="#%E7%BC%82%E6%A0%A7%E5%95%93%E6%B6%93%E6%B0%AC%E5%A7%9F%E6%B5%A0%EF%BD%87%E7%88%9C">缂栧啓涓氬姟浠ｇ爜</a></li>
+<li>[娣诲姞鏂扮粍浠禲(#娣诲姞鏂扮粍浠?</li>
+<li><a href="#%E6%B7%87%EE%86%BD%E6%95%BC%E9%8D%97%E6%9B%9F%E6%BE%98%E9%96%B0%E5%B6%87%E7%96%86%E9%8F%82%E5%9B%A6%E6%AC%A2">淇敼鍗曟澘閰嶇疆鏂囦欢</a></li>
+<li><a href="#%E7%BC%82%E6%A0%AC%E7%98%A7">缂栬瘧</a></li>
+<li><a href="#%E9%90%91%D1%83%E7%B6%8D">鐑у綍</a></li>
+<li><a href="#%E6%B6%93%E6%8F%92%E5%BD%9B%E9%8F%8C%E3%83%A7%E6%B9%85">涓插彛鏌ョ湅</a></li>
+</ul>
+</li>
+<li>[Hi3861鐨勭畝鍗曠紪璇戞祦绋嬭鏄嶿(#hi3861鐨勭畝鍗曠紪璇戞祦绋嬭鏄?<ul>
+<li><a href="#%E9%8F%8B%E5%8B%AB%E7%BC%93%E7%BB%AF%E8%8D%A4%E7%B2%BA">鏋勫缓绯荤粺</a></li>
+<li><a href="#%E9%8F%81%E7%BF%A0%E7%B6%8B%E7%BC%82%E6%A0%AC%E7%98%A7%E5%A8%B4%E4%BD%BA%E2%96%BC">鏁翠綋缂栬瘧娴佺▼</a></li>
+<li>[缁勪欢鐨勫畾涔塢(#缁勪欢鐨勫畾涔?</li>
+<li><a href="#%E5%AF%AE%E2%82%AC%E9%8D%99%E6%88%A6%E6%B8%B6%E7%91%95%E4%BD%B9%E5%B8%89%E9%8E%BB%EF%BC%84%E6%AE%91%E7%BC%82%E6%A0%AC%E7%98%A7%E9%8F%82%E5%9B%A6%E6%AC%A2%E9%8D%90%E5%91%AD%EE%86%90">寮€鍙戦渶瑕佹帉鎻＄殑缂栬瘧鏂囦欢鍐呭</a></li>
+<li>[闄勶細BUILD.gn鍒嗘瀽锛堟湭瀹屾垚寰呯画锛塢(#闄刡uildgn鍒嗘瀽鏈畬鎴愬緟缁?</li>
+</ul>
+</li>
+<li>[Hi3861鐨勫熀纭€鍐呮牳寮€鍙慮(#hi3861鐨勫熀纭€鍐呮牳寮€鍙?<ul>
+<li>[浠€涔堟槸鍐呮牳锛焆(#浠€涔堟槸鍐呮牳)<ul>
+<li><a href="#openharmony%E9%8D%90%E5%91%AE%E7%89%B3">Openharmony鍐呮牳</a></li>
+<li><a href="#liteos-m%E9%8D%90%E5%91%AE%E7%89%B3">LiteOS-M鍐呮牳</a><ul>
+<li>[KAL鎶借薄灞俔(#kal鎶借薄灞?</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E7%BB%BE%E8%B7%A8%E2%96%BC%E7%BB%A0%EF%BC%84%E6%82%8A">绾跨▼绠＄悊</a><ul>
+<li><a href="#%E7%BB%BE%E8%B7%A8%E2%96%BC%E9%90%98%E8%88%B5%E2%82%AC%E4%BD%BA%E6%AE%91%E6%B5%A0%E5%AC%AC%E7%B2%9B">绾跨▼鐘舵€佺殑浠嬬粛</a></li>
+<li>[鍗曠嚎绋嬩娇鐢ㄦ祦绋媇(#鍗曠嚎绋嬩娇鐢ㄦ祦绋?</li>
+<li>[澶氱嚎绋嬩娇鐢ㄦ祦绋媇(#澶氱嚎绋嬩娇鐢ㄦ祦绋?</li>
+<li><a href="#%E6%BE%B6%E6%B0%B1%E5%9A%8E%E7%BB%8B%E5%AC%AC%E6%AE%91%E7%81%8F%E4%BD%BD%EE%97%8A">澶氱嚎绋嬬殑灏佽</a></li>
+</ul>
+</li>
+<li>[杞欢瀹氭椂鍣╙(#杞欢瀹氭椂鍣?<ul>
+<li><a href="#%E6%9D%9E%EE%88%99%E6%AC%A2%E7%80%B9%E6%B0%AD%E6%A4%82%E9%8D%A3%E3%84%A7%E6%AE%91%E6%B5%A0%E5%AC%AC%E7%B2%9B">杞欢瀹氭椂鍣ㄧ殑浠嬬粛</a></li>
+<li>[杞欢瀹氭椂鍣ㄤ娇鐢ㄦ祦绋媇(#杞欢瀹氭椂鍣ㄤ娇鐢ㄦ祦绋?</li>
+</ul>
+</li>
+<li>[浜掓枼閿乚(#浜掓枼閿?<ul>
+<li>[浜掓枼閿佷粙缁峕(#浜掓枼閿佷粙缁?</li>
+<li><a href="#%E6%B5%9C%E6%8E%93%E6%9E%BC%E9%96%BF%E4%BD%BA%E6%AE%91%E6%B5%A3%E8%B7%A8%E6%95%A4%E5%A8%B4%E4%BD%BA%E2%96%BC">浜掓枼閿佺殑浣跨敤娴佺▼</a></li>
+<li>[浜掓枼閿佹渚嬩綋楠宂(#浜掓枼閿佹渚嬩綋楠?</li>
+</ul>
+</li>
+<li>[淇″彿閲廬(#淇″彿閲?<ul>
+<li>[淇″彿閲忎粙缁峕(#淇″彿閲忎粙缁?</li>
+<li><a href="#%E6%B7%87%E2%80%B3%E5%BD%BF%E9%96%B2%E5%BF%95%E6%AE%91%E6%B5%A3%E8%B7%A8%E6%95%A4%E5%A8%B4%E4%BD%BA%E2%96%BC">淇″彿閲忕殑浣跨敤娴佺▼</a></li>
+</ul>
+</li>
+<li><a href="#%E5%A8%91%E5%A0%9F%E4%BC%85%E9%97%83%E7%86%B7%E5%9E%AA">娑堟伅闃熷垪</a><ul>
+<li><a href="#%E5%A8%91%E5%A0%9F%E4%BC%85%E9%97%83%E7%86%B7%E5%9E%AA%E6%B5%A0%E5%AC%AC%E7%B2%9B">娑堟伅闃熷垪浠嬬粛</a></li>
+<li><a href="#%E5%A8%91%E5%A0%9F%E4%BC%85%E9%97%83%E7%86%B7%E5%9E%AA%E6%B5%A3%E8%B7%A8%E6%95%A4%E5%A8%B4%E4%BD%BA%E2%96%BC">娑堟伅闃熷垪浣跨敤娴佺▼</a></li>
+</ul>
+</li>
+<li><a href="#%E7%92%87%E5%AD%98%E6%A7%91">璇存槑</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="纭欢瀛︿範浠撳簱"><a href="#纭欢瀛︿範浠撳簱" class="headerlink" title="纭欢瀛︿範浠撳簱"></a>纭欢瀛︿範浠撳簱</h1><h2 id="鍓嶈█"><a href="#鍓嶈█" class="headerlink" title="鍓嶈█"></a>鍓嶈█</h2><p>棣栧厛澶у鍙兘浼氬惉瀛﹂暱瀛﹀鎻愬強鎴戜滑IoT缁勬湁涓€涓‖浠剁殑瀛︿範浠撳簱锛屼絾鏄ぇ瀹跺彲鑳戒細璐ㄧ枒浠栫殑鏉冨▉鎬э紝棣栧厛鍙互鍛婅瘔澶у锛岃繖涓粨搴撲粬鏄巻灞婂闀垮濮愮殑缁忛獙鎬荤粨鍑烘潵鐨勶紝鏄竴涓彲鍙傝€冪殑浠撳簱锛屽畠鐩稿綋浜庢槸缁欏ぇ瀹舵湁涓€涓竻鏅扮殑瀛︿範瑙勫垝锛屾垜浠細灏藉彲鑳界殑浣夸粬鍙樺緱鏇村叏闈紒</p>
+<h2 id="Hi3861鐨勫涔狅紙OpenHarmony鍗楀悜寮€鍙戯級"><a href="#Hi3861鐨勫涔狅紙OpenHarmony鍗楀悜寮€鍙戯級" class="headerlink" title="Hi3861鐨勫涔狅紙OpenHarmony鍗楀悜寮€鍙戯級"></a>Hi3861鐨勫涔狅紙OpenHarmony鍗楀悜寮€鍙戯級</h2><pre><code>棣栧厛鎴戜滑瑕佷簡瑙ｄ粈涔堟槸鍩轰簬IDE寮€鍙戯紝浠€涔堟槸鍩轰簬鍛戒护琛屽紑鍙戯紵
+</code></pre>
+<ul>
+<li><blockquote>
+<p>鈥侷DE锛堥泦鎴愬紑鍙戠幆澧冿級 灏辨槸鐢佃剳涓婄紪绋嬫椂鐢ㄧ殑搴旂敤  </p>
+</blockquote>
+</li>
+<li><blockquote>
+<p> 鍛戒护琛屽氨涓€鑸寚鍦ㄧ粓绔繘琛屽紑鍙?</p>
+</blockquote>
+</li>
+</ul>
+<p>閭ｄ箞鏍规嵁涓嶅悓鐨勪範鎯湁涓嶅悓鐨勫紑鍙戞柟寮忥紝杩欓噷鎴戜滑涓昏浠嬬粛涓€涓婭DE锛堥泦鎴愬紑鍙戠幆澧冿級锛屽挨鍏舵槸windows鐨勫紑鍙戞柟寮?</p>
+<h3 id="windows涓嬬殑DevEco-Device-Tool寮€鍙戠幆澧冩惌寤"><a href="#windows涓嬬殑DevEco-Device-Tool寮€鍙戠幆澧冩惌寤" class="headerlink" title="windows涓嬬殑DevEco Device Tool寮€鍙戠幆澧冩惌寤?"></a>windows涓嬬殑DevEco Device Tool寮€鍙戠幆澧冩惌寤?</h3><ul>
+<li><p>涓嬭浇<a target="_blank" rel="noopener" href="https://device.harmonyos.com/cn/develop/ide#download">DevEco Device Tool</a>鏈€鏂癭Windows&#96;鐗堟湰杞欢鍖呫€?</p>
+</li>
+<li><p>瑙ｅ帇DevEco Device Tool鍘嬬缉鍖咃紝鍙屽嚮瀹夎鍖呯▼搴忥紝鍗曞嚮涓嬩竴姝ヨ繘琛屽畨瑁呫€?</p>
+</li>
+<li><p>璁剧疆DevEco Device Tool鐨勫畨瑁呰矾寰勶紝璇锋敞鎰忓畨瑁呰矾寰勪笉鑳藉寘鍚腑鏂囧瓧绗︼紝涓嶅缓璁畨瑁呭埌<code>C</code>鐩樼洰褰曪紝鍗曞嚮涓嬩竴姝ャ€?</p>
+<p>  <img src="/./%E9%8D%A5%E6%83%A7%E7%B0%A5/1.png" alt="Alt text"></p>
+</li>
+<li><p>鐒跺悗鎸夌収涓婇潰鐨勬彁绀鸿繘琛岀偣鍑伙紝鍏朵腑浼氭湁妫€鏌python<code>鍜宍vscode</code>鐨勬楠わ紝璁颁綇锛乸ython鐨勭増鏈渶濂芥槸<code>3.8</code>鎴朻3.9&#96;</p>
+</li>
+<li><p>鎵撳紑<code>Visual Studio Code</code>锛岃繘鍏DevEco Device Tool&#96;宸ュ叿鐣岄潰銆傝嚦姝わ紝DevEco Device Tool Windows寮€鍙戠幆澧冨畨瑁呭畬鎴愩€?</p>
+</li>
+</ul>
+<h3 id="鍒涘缓宸ョ▼骞惰幏鍙栨簮鐮"><a href="#鍒涘缓宸ョ▼骞惰幏鍙栨簮鐮" class="headerlink" title="鍒涘缓宸ョ▼骞惰幏鍙栨簮鐮?"></a>鍒涘缓宸ョ▼骞惰幏鍙栨簮鐮?</h3><ul>
+<li><p>鎵撳紑DevEco Device Tool锛岃繘鍏ome椤碉紝鐐瑰嚮New Project鍒涘缓鏂板伐绋嬨€?</p>
+</li>
+<li><p>鍦ㄦ柊宸ョ▼鐨勯厤缃悜瀵奸〉锛岄厤缃伐绋嬬浉鍏充俊鎭紝鍖呮嫭锛?</p>
+<blockquote>
+<p>宸ョ▼鍚嶏細锛堥殢渚垮啓锛?<br>SOC锛欻i3861<br>宸ョ▼璺緞锛氶€夋嫨鍚堥€傜殑璺緞  </p>
+</blockquote>
+<p>  <img src="/./%E9%8D%A5%E6%83%A7%E7%B0%A5/2.png" alt="Alt text"></p>
+</li>
+<li><p>宸ョ▼閰嶇疆瀹屾垚鍚庯紝涓嬭浇SDK锛堝鏋滄病鏈夛紝鐐瑰嚮SDK鏃佽竟鐨勪笅杞斤級锛岀偣鍑籤Confirm&#96;锛孌evEco Device Tool浼氳嚜鍔ㄥ惎鍔∣penHarmony婧愮爜鐨勪笅杞姐€傜敱浜嶰penHarmony绋冲畾鐗堟湰婧愮爜鍖呬綋绉緝澶э紝璇疯€愬績绛夊緟婧愮爜涓嬭浇瀹屾垚銆?</p>
+<blockquote>
+<p>SDK鏄蒋浠跺紑鍙戝伐鍏峰寘锛岃緟鍔╁紑鍙戞煇涓€绫昏蒋浠剁殑鐩稿叧鏂囨。銆佽寖渚嬪拰宸ュ叿鐨勯泦鍚?</p>
+</blockquote>
+</li>
+<li><p>瀹屾垚浠ュ悗锛屾簮鐮佺幆澧冨凡缁忔惌寤哄畬鎴愶紝涓嬮潰鎴戜滑灏卞彲浠ユ剦蹇殑杩涜Hi3861鐨勫紑鍙戜簡锛?</p>
+</li>
+<li><p>*<em>娉ㄦ剰锛?</em> 濡傛灉娌℃湁婧愮爜涓嬭浇鎴愬姛锛屾垜鍦℉i3861鏂囦欢澶逛腑鎻愪緵鐨勬湁SDK鐨勫帇缂╁寘鍜屾簮鐮佺幆澧冪殑鍘嬬缉鍖咃紝鍙互鑷杩涜瀵煎叆</p>
+</li>
+</ul>
+<h3 id="闄勶細瀵煎叆SDK鍜岀紪璇戝伐鍏峰寘"><a href="#闄勶細瀵煎叆SDK鍜岀紪璇戝伐鍏峰寘" class="headerlink" title="闄勶細瀵煎叆SDK鍜岀紪璇戝伐鍏峰寘"></a>闄勶細瀵煎叆SDK鍜岀紪璇戝伐鍏峰寘</h3><pre><code>璇存槑锛氬湪涓嬭浇鏃跺彲鑳戒細鍑虹幇涓嬭浇澶辫触锛岃繖閲屽彲浠ュ皢杩欑鎯呭喌瑙ｅ喅
+</code></pre>
+<ul>
+<li><p>閫夋嫨宸ョ▼婧愮爜锛岃繖閲屾垜浠厛涓嬭浇<code>Dev-Tool</code>锛堝伐鍏峰寘锛夊拰<code>hi3861_hdu_iot</code>锛圫DK锛夛紝杩欓噷鍙洿鎺ラ€氳繃缃戠洏杩涜涓嬭浇<a target="_blank" rel="noopener" href="https://cloud.189.cn/t/r2QBNr2umqUv">Hi3861鐜</a>锛堣闂爜锛歳3kc锛?</p>
+<blockquote>
+<p><code>Dev-Tool</code> 鍦?<code>hi3861鐜/DevTools/DevTools_Hi3861V100.zip</code><br><code>hi3861_hdu_iot</code> 鍦?<code>hi3861鐜/hi3861_hdu_iot/0001.zip</code></p>
+</blockquote>
+</li>
+<li><p>灏嗕袱涓帇缂╁寘瑙ｅ帇鍚庯紝鍏堝皢宸ョ▼婧愮爜瀵煎叆鍒癉evEco Device Tool<br>  <img src="/./%E9%8D%A5%E6%83%A7%E7%B0%A5/3.png" alt="Alt text">  </p>
+</li>
+<li><p>鐒跺悗鐐瑰嚮DevEco Device Tool鐨勫伐绋嬮厤缃紝鏌ョ湅宸ュ叿鍖呮槸鍚﹀畨瑁咃紝娌℃湁瀹夎鍙互鐐瑰嚮涓嬭浇锛屼笅杞芥垚鍔熷氨閰嶇疆濂戒簡锛屽鏋滀笅杞藉け璐ヨ缁х画璺熺潃鏂囨。寰€涓嬭蛋<br>  <img src="/./%E9%8D%A5%E6%83%A7%E7%B0%A5/4.png" alt="Alt text"></p>
+</li>
+<li><p>鐐瑰嚮hi3861锛岀偣鍑籤compiler_bin_path&#96;<br>  <img src="/./%E9%8D%A5%E6%83%A7%E7%B0%A5/5.png" alt="Alt text"></p>
+</li>
+<li><p>杩欓噷涓昏鏄厤缃紪璇戝伐鍏风殑璺緞锛屽叾瀹炰富瑕佹槸<code>env_start.bat</code>鐨勪綔鐢?<br>  <img src="/./%E9%8D%A5%E6%83%A7%E7%B0%A5/7.png" alt="Alt text"><br>  <img src="/./%E9%8D%A5%E6%83%A7%E7%B0%A5/6.png" alt="Alt text"></p>
+</li>
+<li><p>杩欓噷鎴戞墦寮€涓€涓媊env_start.bat&#96;锛岀粰浣犱滑鐪嬩竴涓媓i3861鐨勭紪璇戠幆澧冿紙鍛戒护琛岋級锛屽熀浜嶩b妗嗘灦<br>  <img src="/./%E9%8D%A5%E6%83%A7%E7%B0%A5/8.png" alt="Alt text"></p>
+</li>
+<li><p>鍒版鎴戜滑鐨凷DK鍜屽伐鍏峰寘宸茬粡閰嶇疆瀹屾垚锛佷笅闈㈡垜浠氨鍙互鎰夊揩鐨勮繘琛孒i3861鐨勫紑鍙戜簡锛?</p>
+<blockquote>
+<p>濡傛灉杩樻槸鏈夐棶棰樿鎻愪氦涓€涓猧ssue锛?</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="楠岃瘉鐜"><a href="#楠岃瘉鐜" class="headerlink" title="楠岃瘉鐜"></a>楠岃瘉鐜</h3><pre><code>璇存槑锛氳繖閲屾垜浠浜庡伐鍏峰寘鐨勯獙璇佸彧鏈夌紪璇戝眰闈㈢殑锛屽浜庣儳褰曟垜浠笉鍋氶獙璇?
+</code></pre>
+<ul>
+<li>婧愮爜浠€涔堥兘涓嶉渶瑕佹洿鏀癸紝鎴戜滑鐐瑰嚮<code>DevEco Device Tool</code>宸ュ叿鐣岄潰锛屽湪涓嬫柟鐨刞project tasks<code>涓偣鍑籤Rebuild</code>锛岀劧鍚庡紑濮嬬紪璇戯紝鍑虹幇浠ヤ笅鐢婚潰鍒欒瘉鏄庣紪璇戞垚鍔燂紒  <blockquote>
+<p>婧愮爜涓€寮€濮嬬殑<code>applcations</code>瀛愮郴缁熺紪璇戠殑鏄痐wifi_iot_sample_app<code>缁勪欢锛屽叾缁勪欢鐨凚uild.gn鍙湁缂栬瘧</code>startup&#96;杩欎釜涓氬姟妯″潡锛屾墍浠ユ垜浠垵瀛﹁€呬笉闇€瑕佸婧愮爜杩涜淇敼灏卞彲浠ラ獙璇佺幆澧冪殑瀹屽鎬?</p>
+</blockquote>
+  <img src="/./%E9%8D%A5%E6%83%A7%E7%B0%A5/9.png" alt="Alt text"></li>
+</ul>
+<h2 id="蹇€熷叆闂"><a href="#蹇€熷叆闂" class="headerlink" title="蹇€熷叆闂?"></a>蹇€熷叆闂?</h2><h3 id="纭畾鐩綍缁撴瀯"><a href="#纭畾鐩綍缁撴瀯" class="headerlink" title="纭畾鐩綍缁撴瀯"></a>纭畾鐩綍缁撴瀯</h3><p>寮€鍙戣€呯紪鍐欎笟鍔′唬鐮佹椂锛屽姟蹇呭厛鍦╜.&#x2F;applications&#x2F;sample&#x2F;wifi-iot&#x2F;app&#96;璺緞涓嬫柊寤轰竴涓洰褰曪紙鎴栦竴濂楃洰褰曠粨鏋勶級锛岀敤浜庡瓨鏀句笟鍔℃簮鐮佹枃浠躲€?</p>
+<p>渚嬪锛氬湪<code>app</code>涓嬫柊澧炰笟鍔my_first_app<code>锛屽叾涓璥hello_world.c</code>涓轰笟鍔′唬鐮侊紝<code>BUILD.gn</code>涓虹紪璇戣剼鏈紝鍏蜂綋瑙勫垝鐩綍缁撴瀯濡備笅锛?</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">鈹斺攢鈹€ applications</span><br><span class="line">    鈹斺攢鈹€ sample</span><br><span class="line">        鈹斺攢鈹€ wifi-iot</span><br><span class="line">            鈹斺攢鈹€ app</span><br><span class="line">                鈹斺攢鈹€ my_first_app</span><br><span class="line">                  鈹傗攢鈹€ hello_world.c</span><br><span class="line">                  鈹斺攢鈹€ BUILD.gn</span><br><span class="line">.</span><br><span class="line">鈹斺攢鈹€ applications</span><br><span class="line">    鈹斺攢鈹€ sample</span><br><span class="line">        鈹斺攢鈹€ wifi-iot</span><br><span class="line">            鈹斺攢鈹€ app</span><br><span class="line">                鈹斺攢鈹€ my_first_app</span><br><span class="line">                  鈹傗攢鈹€ hello_world.c</span><br><span class="line">                  鈹斺攢鈹€ BUILD.gn</span><br></pre></td></tr></table></figure>
+
+<h3 id="缂栧啓涓氬姟浠g爜"><a href="#缂栧啓涓氬姟浠g爜" class="headerlink" title="缂栧啓涓氬姟浠ｇ爜"></a>缂栧啓涓氬姟浠ｇ爜</h3><p>鏂板缓<code>./applications/sample/wifi-iot/app/my_first_app</code>涓嬬殑<code>hello_world.c</code>鏂囦欢锛屽湪hello_world.c涓柊寤轰笟鍔″叆鍙ｅ嚱鏁癏elloWorld锛屽苟瀹炵幇涓氬姟閫昏緫銆傚苟鍦ㄤ唬鐮佹渶涓嬫柟锛屼娇鐢∣penHarmony鍚姩鎭㈠妯″潡鎺ュ彛<code>SYS_RUN()</code>鍚姩涓氬姟銆傦紙SYS_RUN瀹氫箟鍦╜ohos_init.h&#96;鏂囦欢涓級</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;ohos_init.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;ohos_types.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">HelloWorld</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;[DEMO] Hello world.\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line">SYS_RUN(HelloWorld);</span><br></pre></td></tr></table></figure>
+
+<p>缂栧啓鐢ㄤ簬灏嗕笟鍔℃瀯寤烘垚闈欐€佸簱鐨刞BUILD.gn&#96;鏂囦欢銆?</p>
+<p>鏂板缓<code>./applications/sample/wifi-iot/app/my_first_app</code>涓嬬殑<code>BUILD.gn</code>鏂囦欢锛屽苟瀹屾垚濡備笅閰嶇疆銆?</p>
+<p>濡傛楠?鎵€杩帮紝BUILD.gn鏂囦欢鐢变笁閮ㄥ垎鍐呭锛堢洰鏍囥€佹簮鏂囦欢銆佸ご鏂囦欢璺緞锛夋瀯鎴愶紝闇€鐢卞紑鍙戣€呭畬鎴愬～鍐欍€?</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">static_library(&quot;myapp&quot;) &#123;</span><br><span class="line">    sources = [</span><br><span class="line">        &quot;hello_world.c&quot;</span><br><span class="line">    ]</span><br><span class="line">    include_dirs = [</span><br><span class="line">        &quot;//utils/native/lite/include&quot;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>static_library涓寚瀹氫笟鍔℃ā鍧楃殑缂栬瘧缁撴灉锛屼负闈欐€佸簱鏂囦欢libmyapp.a锛屽紑鍙戣€呮牴鎹疄闄呮儏鍐靛畬鎴愬～鍐欍€?<br>sources涓寚瀹氶潤鎬佸簱.a鎵€渚濊禆鐨?c鏂囦欢鍙婂叾璺緞锛岃嫢璺緞涓寘鍚?&#x2F;&#x2F;鈥滃垯琛ㄧず缁濆璺緞锛堟澶勪负浠ｇ爜鏍硅矾寰勶級锛岃嫢涓嶅寘鍚€?&#x2F;“鍒欒〃绀虹浉瀵硅矾寰勩€?<br>include_dirs涓寚瀹歴ource鎵€闇€瑕佷緷璧栫殑.h鏂囦欢璺緞銆?</p>
+<h3 id="娣诲姞鏂扮粍浠"><a href="#娣诲姞鏂扮粍浠" class="headerlink" title="娣诲姞鏂扮粍浠?"></a>娣诲姞鏂扮粍浠?</h3><p>淇敼鏂囦欢<code>build/lite/components/applications.json</code>锛屾坊鍔犵粍浠禶hello_world_app<code>鐨勯厤缃紝濡備笅鎵€绀轰负</code>applications.json&#96;鏂囦欢鐗囨锛?##start##鈥滃拰鈥?#end##鈥滀箣闂翠负鏂板閰嶇疆锛堚€?#start##鈥滃拰鈥?#end##”浠呯敤鏉ユ爣璇嗕綅缃紝娣诲姞瀹岄厤缃悗鍒犻櫎杩欎袱琛岋級锛?</p>
+<blockquote>
+<p>璇存槑锛?鏈珷鑺傛搷浣滄槸浠penHarmony-v3.1-Release鐗堟湰涓轰緥杩涜鎿嶄綔鐨勶紝璇ョ増鏈腑锛岀粍浠堕厤缃枃浠朵负<code>build/lite/components/applications.json</code>锛涜嫢婧愮爜鐗堟湰澶т簬绛変簬OpenHarmony 3.2 Beta2鏃讹紝缁勪欢閰嶇疆鏂囦欢涓篳build&#x2F;lite&#x2F;components&#x2F;communication.json&#96;銆?</p>
+</blockquote>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;components&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;component&quot;</span><span class="punctuation">:</span> <span class="string">&quot;camera_sample_communication&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;description&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Communication related samples.&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;optional&quot;</span><span class="punctuation">:</span> <span class="string">&quot;true&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;dirs&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="string">&quot;applications/sample/camera/communication&quot;</span></span><br><span class="line">      <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;targets&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="string">&quot;//applications/sample/camera/communication:sample&quot;</span></span><br><span class="line">      <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;rom&quot;</span><span class="punctuation">:</span> <span class="string">&quot;&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;ram&quot;</span><span class="punctuation">:</span> <span class="string">&quot;&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;output&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;adapted_kernel&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span> <span class="string">&quot;liteos_a&quot;</span> <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;features&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;deps&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;components&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;third_party&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">]</span></span><br><span class="line">      <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">##start##</span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;component&quot;</span><span class="punctuation">:</span> <span class="string">&quot;hello_world_app&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;description&quot;</span><span class="punctuation">:</span> <span class="string">&quot;hello world samples.&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;optional&quot;</span><span class="punctuation">:</span> <span class="string">&quot;true&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;dirs&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="string">&quot;applications/sample/wifi-iot/app/my_first_app&quot;</span></span><br><span class="line">      <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;targets&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="string">&quot;//applications/sample/wifi-iot/app/my_first_app:myapp&quot;</span></span><br><span class="line">      <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;rom&quot;</span><span class="punctuation">:</span> <span class="string">&quot;&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;ram&quot;</span><span class="punctuation">:</span> <span class="string">&quot;&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;output&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;adapted_kernel&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span> <span class="string">&quot;liteos_m&quot;</span> <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;features&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;deps&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;components&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;third_party&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">]</span></span><br><span class="line">      <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">##end##</span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;component&quot;</span><span class="punctuation">:</span> <span class="string">&quot;camera_sample_app&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;description&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Camera related samples.&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;optional&quot;</span><span class="punctuation">:</span> <span class="string">&quot;true&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;dirs&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="string">&quot;applications/sample/camera/launcher&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="string">&quot;applications/sample/camera/cameraApp&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="string">&quot;applications/sample/camera/setting&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="string">&quot;applications/sample/camera/gallery&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="string">&quot;applications/sample/camera/media&quot;</span></span><br><span class="line">      <span class="punctuation">]</span><span class="punctuation">,</span></span><br></pre></td></tr></table></figure>
+<h3 id="淇敼鍗曟澘閰嶇疆鏂囦欢"><a href="#淇敼鍗曟澘閰嶇疆鏂囦欢" class="headerlink" title="淇敼鍗曟澘閰嶇疆鏂囦欢"></a>淇敼鍗曟澘閰嶇疆鏂囦欢</h3><p>淇敼鏂囦欢<code>vendor/hisilicon/hispark_pegasus/config.json</code>锛屾柊澧瀈hello_world_app<code>缁勪欢鐨勬潯鐩紝濡備笅鎵€绀轰唬鐮佺墖娈典负</code>applications&#96;瀛愮郴缁熼厤缃紝”##start##鈥滃拰鈥?#end##鈥滀箣闂翠负鏂板鏉＄洰锛堚€?#start##鈥滃拰鈥?#end##”浠呯敤鏉ユ爣璇嗕綅缃紝娣诲姞瀹岄厤缃悗鍒犻櫎杩欎袱琛岋級锛?</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">      &#123;</span><br><span class="line">        &quot;subsystem&quot;: &quot;applications&quot;,</span><br><span class="line">        &quot;components&quot;: [</span><br><span class="line">##start##</span><br><span class="line">          &#123; &quot;component&quot;: &quot;hello_world_app&quot;, &quot;features&quot;:[] &#125;,</span><br><span class="line">##end##</span><br><span class="line">          &#123; &quot;component&quot;: &quot;wifi_iot_sample_app&quot;, &quot;features&quot;:[] &#125;</span><br><span class="line">        ]</span><br><span class="line">      &#125;,</span><br></pre></td></tr></table></figure>
+
+<h3 id="缂栬瘧"><a href="#缂栬瘧" class="headerlink" title="缂栬瘧"></a>缂栬瘧</h3><p>鎸夌収涓婇潰鐨勬楠ょ偣鍑籤Rebuild<code>锛屾樉绀篳success bulid</code>鐨勫瓧鏍枫€?<br>    <img src="/./%E9%8D%A5%E6%83%A7%E7%B0%A5/9.png" alt="Alt text"></p>
+<h3 id="鐑у綍"><a href="#鐑у綍" class="headerlink" title="鐑у綍"></a>鐑у綍</h3><p>鎴戜滑灏哹earpi锛坔i3861寮€鍙戞澘锛夎繛鎺ョ數鑴戝悗鐐瑰嚮<code>hi3861</code>锛岀劧鍚庣偣鍑籤upload_port&#96;锛岄€夋嫨甯︽湁ch340鐨勪覆鍙ｏ紝濡傛灉娌℃湁ch340鐨勬爣璇嗭紝鍙兘浣犳病鏈夊畨瑁卌h340鐨勪覆鍙ｉ┍鍔紝杩欓噷鎴戞彁渚涗互涓嬬綉鐩樹笅杞介摼鎺?<a target="_blank" rel="noopener" href="https://cloud.189.cn/t/zyAny2JjiAzq">CH340椹卞姩涓嬭浇</a> 锛堣闂爜锛歳gd6锛?<br>   <img src="/./%E9%8D%A5%E6%83%A7%E7%B0%A5/10.png" alt="Alt text"></p>
+<p><strong>娉ㄦ剰锛氶€夊ソport鍚庡氨鍙互鐐瑰嚮<code>project tasks</code>鐨刞Upload<code>鎸夐挳锛屽湪鍑虹幇</code>continue&#96;鐨勬椂鍊欙紝鎸変笅bearpi涓婄殑澶嶄綅鎸夐挳</strong></p>
+<h3 id="涓插彛鏌ョ湅"><a href="#涓插彛鏌ョ湅" class="headerlink" title="涓插彛鏌ョ湅"></a>涓插彛鏌ョ湅</h3><p>鐐瑰嚮<code>Monitor</code>鍚庢寜涓媌earpi鐨勫浣嶆寜閿紝灏卞彲浠ユ煡鐪嬫墦鍗板嚭鏉ョ殑Hello world鍟?</p>
+<h2 id="Hi3861鐨勭畝鍗曠紪璇戞祦绋嬭鏄"><a href="#Hi3861鐨勭畝鍗曠紪璇戞祦绋嬭鏄" class="headerlink" title="Hi3861鐨勭畝鍗曠紪璇戞祦绋嬭鏄?"></a>Hi3861鐨勭畝鍗曠紪璇戞祦绋嬭鏄?</h2><h3 id="鏋勫缓绯荤粺"><a href="#鏋勫缓绯荤粺" class="headerlink" title="鏋勫缓绯荤粺"></a>鏋勫缓绯荤粺</h3><blockquote>
+<p>锛堝€熼壌鏂囩珷锛歔浠庢湰璐ㄤ笂瀛︿細鍩轰簬HarmonyOS寮€鍙慔i3861锛堜富瑕佽鎺堟柟娉曪級](<a target="_blank" rel="noopener" href="https://ost.51cto.com/posts/1860)%E9%94%9B">https://ost.51cto.com/posts/1860)锛</a>?</p>
+</blockquote>
+<p>鍦ㄥ熀浜嶰penHarmony寮€鍙慔i3861涔嬪墠锛岄渶瑕佸鏁翠釜寮€鍙戠幆澧冨強杩囩▼鏈変竴涓叏灞€涓婄殑浜嗚В锛岄鍏堣繕鏄粠杩欎竴寮犳渶缁忓吀鐨勬鏋跺浘缁欏ぇ瀹讹細<br>  <img src="/./%E9%8D%A5%E6%83%A7%E7%B0%A5/%E5%A6%97%E5%97%98%E7%81%A6%E9%8D%A5?png" alt="Alt text"><br>鐩墠鎴戜滑瀵笻i3861鐨勫紑鍙戜富瑕佹秹鍙婁笂鍥句腑鐨勫唴鏍告娊璞″眰銆佺郴缁熻兘鍔涘瓙绯荤粺銆丏XF瀛愮郴缁熴€佸叕鍏卞熀纭€搴撳瓙绯荤粺锛堟彁渚汯V瀛樺偍銆佹枃浠舵搷浣溿€佸畾鏃跺櫒銆両oT澶栬鎺у埗绛夎兘鍔涗緵OpenHarmony鍚勪笟鍔″瓙绯荤粺鍙婁笂灞傚簲鐢ㄤ娇鐢級銆佺郴缁熸湇鍔℃鏋跺瓙绯荤粺锛堢敤浜庢彁渚涢潰鍚戞湇鍔＄紪绋嬪拰瀵瑰鎻愪緵鑳藉姏鐢ㄤ簬鍒嗗竷寮忎换鍔¤皟搴︼級</p>
+<p>璇ユ瀯寤虹郴缁熺敱python鑴氭湰閰嶅悎gn銆乶inja缁勬垚锛岃嫢鏄负浜嗗紑鍙慏emo鎴栬€呭簲鐢紝涓嶅繀缁嗙┒缂栬瘧鏋勫缓绯荤粺鐨勫叿浣撳疄鐜扮粏鑺傦紝鍙渶瑕佸仛鍒颁細浣跨敤鍗冲彲銆?</p>
+<p>褰撴垜浠緭鍏ython build.py wifiiot鎸囦护锛宲ython鑴氭湰寮€濮嬭鍙朾uild鐩綍涓笌wifiiot璁惧鐩稿叧鐨勫悇椤瑰弬鏁颁俊鎭苟鏋勯€犵紪璇戞寚浠ゅ涓嬶細</p>
+<blockquote>
+<p>gn宸ュ叿鎵€鍦ㄧ洰褰昤&#x2F;gn<code> gen婧愮爜鎵€鍦ㄧ洰褰昤/out/wifiiot</code></p>
+</blockquote>
+<ul>
+<li><code>--root=. --dotfile=build/lite/.gn --args=&#39;product = &quot;wifiiot&quot; ohos_build_type = &quot;release&quot;&#39;</code> 杩欐潯鎸囦护鐢ㄤ簬鐢熸垚涓€浜泋xx.ninja鏂囦欢锛岃繖浜涙枃浠跺皢鍦ㄤ笅涓€闃舵鎸囧ninja缂栬瘧婧愮爜鐢熸垚鐑у綍鏂囦欢</li>
+<li>ninja宸ュ叿鎵€鍦ㄧ洰褰昤&#x2F;ninja<code> 婧愮爜鎵€鍦ㄧ洰褰昤/out/wifiiot</code>  <code>-w dupbuild=warn -C</code>杩欐潯鎸囦护鐢ㄤ簬鏍规嵁鍓嶉潰鐢熸垚鐨剎xx.ninja鏂囦欢璋冪敤宸ュ叿閾剧紪璇戞簮鐮佹渶缁堢敓鎴愮儳褰曟枃浠?</li>
+<li>gn鐢ㄤ簬鏍规嵁姣忎釜鐩綍涓嬬殑BUID,gn鏂囦欢鎼滃缂栬瘧鐢熸垚鐑у綍鏂囦欢鎵€闇€鐨勪緷璧栨枃浠讹紝鎵€浠ユ垜浠彧瑕佸浼氬浣曞啓BUILD.gn鏂囦欢鍗冲彲</li>
+</ul>
+<h3 id="鏁翠綋缂栬瘧娴佺▼"><a href="#鏁翠綋缂栬瘧娴佺▼" class="headerlink" title="鏁翠綋缂栬瘧娴佺▼"></a>鏁翠綋缂栬瘧娴佺▼</h3><p>鍦ㄤ笂闈㈡垜浠彁鍒颁簡瀛愮郴缁燂紝缁勪欢锛屼笟鍔℃ā鍧楃瓑锛岃繖浜涢兘鏄垜浠琽penharmony妗嗘灦鐨勬蹇碉紝杩欓噷鎴戜滑涓嶅仛杩囧鐨勮禈杩般€傛垜浠富瑕佽涓€璁瞣penharmony鏄€庝箞鐭ラ亾鎴戜滑瑕佺紪璇戦偅涓€涓枃浠跺す銆?</p>
+<p>棣栧厛锛岀粰澶у鐪嬩竴涓媜penharmony鍚姩娴佺▼銆?<br>  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">闃舵1锛歝ore 鍐呮牳鍚姩</span><br><span class="line"></span><br><span class="line">闃舵2锛歝ore system service 鍐呮牳绯荤粺鏈嶅姟</span><br><span class="line"></span><br><span class="line">闃舵3锛歝ore system feature 鍐呮牳绯荤粺鐗规€?</span><br><span class="line"></span><br><span class="line">闃舵4锛歴ystem startup 绯荤粺鍚姩</span><br><span class="line"></span><br><span class="line">闃舵5锛歴ystem service 绯荤粺鏈嶅姟</span><br><span class="line"></span><br><span class="line">闃舵6锛歴ystem future 绯荤粺鐗规€?</span><br><span class="line"></span><br><span class="line">闃舵7锛歛pplication-layer service 搴旂敤灞傛湇鍔?</span><br><span class="line"></span><br><span class="line">闃舵8锛歛pplication-layer feature 搴旂敤灞傜壒鎬?</span><br></pre></td></tr></table></figure><br>涓婅堪鍏釜闃舵鏄粠缂栬瘧鍣ㄥ紑濮媌uild鏂囦欢锛岀劧鍚庝竴姝ヤ竴姝?</p>
+<p>浼犲叆鍒颁富鏉胯涓绘澘杩涜缂栬瘧鐨勮繃绋嬨€?</p>
+<p>openharmony鏄€庝箞鎵ц杩?涓樁娈电殑锛岄鍏坥hos_init.h瀹氫箟浜?涓畯锛岀敤浜庤涓€涓嚱鏁颁互鈥滀紭鍏堢骇2鈥濆湪绯荤粺鍚姩杩囩▼鐨?-8闃舵鎵ц銆傝繖閲屾秹鍙婂埌涓€涓紭鍏堢骇闂锛屽湪绯荤粺鍚姩鐨勬煇涓樁娈碉紝浼氭湁澶氫釜鍑芥暟琚皟鐢紝浼樺厛绾у喅瀹氫簡璋冪敤椤哄簭銆?</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">浼樺厛绾ц寖鍥达細0-4銆?</span><br><span class="line"></span><br><span class="line">浼樺厛绾ч『搴忥細0, 1, 2, 3, 4銆?</span><br></pre></td></tr></table></figure>
+
+<p>涓婅堪灏辨槸绋嬪簭缂栬瘧鐨勪紭鍏堥『搴忋€?<br>鍗冲嚱鏁颁細琚爣璁颁负鍏ュ彛锛屽湪绯荤粺鍚姩杩囩▼鐨?-8闃舵锛屼互鈥滀紭鍏堢骇2鈥濊璋冪敤銆?</p>
+<p><strong>ohos_init.h瀹氫箟鐨?涓畯</strong>  </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">CORE_INIT()锛?闃舵1. core</span><br><span class="line"></span><br><span class="line">SYS_SERVICE_INIT()锛?闃舵2. core systemservice</span><br><span class="line"></span><br><span class="line">SYS_FEATURE_INIT()锛?闃舵3. core system feature</span><br><span class="line"></span><br><span class="line">SYS_RUN()锛?闃舵4. system startup</span><br><span class="line"></span><br><span class="line">SYSEX_SERVICE_INIT()锛?闃舵5. system service</span><br><span class="line"></span><br><span class="line">SYSEX_FEATURE_INIT()锛?闃舵6. system feature</span><br><span class="line"></span><br><span class="line">APP_SERVICE_INIT()锛?闃舵7. application-layer service</span><br><span class="line"></span><br><span class="line">APP_FEATURE_INIT()锛?闃舵8. application-layer feature</span><br></pre></td></tr></table></figure>
+
+<p>杩欓噷澶у鍙互鐪嬩竴涓媜penharmony鐨勭紪璇戠浉鍏虫枃浠讹紝杩欎釜鍦╜src&#x2F;bulid&#x2F;lite&#96;璺緞涓?</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">build / lite</span><br><span class="line">鈹溾攢鈹€ components # 缁勪欢鎻忚堪鏂囦欢</span><br><span class="line">鈹溾攢鈹€ config # 缂栬瘧鐩稿叧鐨勯厤缃」</span><br><span class="line">鈹?鈹溾攢鈹€ component # 缁勪欢鐩稿叧鐨勬ā鏉垮畾涔?</span><br><span class="line">鈹?鈹溾攢鈹€ kernel # 鍐呮牳鐨勭紪璇戦厤缃弬鏁?</span><br><span class="line">鈹?鈹斺攢鈹€ subsystem # 瀛愮郴缁熸ā鏉?</span><br><span class="line">鈹溾攢鈹€ figures # readme涓殑鍥剧墖</span><br><span class="line">鈹溾攢鈹€ hb # hb pip瀹夎鍖呮簮鐮?</span><br><span class="line">鈹溾攢鈹€ make_rootfs # 鏂囦欢绯荤粺闀滃儚鍒朵綔鑴氭湰</span><br><span class="line">鈹溾攢鈹€ ndk # Native API鐩稿叧缂栬瘧鑴氭湰涓庨厤缃弬鏁?</span><br><span class="line">鈹溾攢鈹€ platform # ld鑴氭湰</span><br><span class="line">鈹溾攢鈹€ testfwk # 娴嬭瘯缂栬瘧妗嗘灦</span><br><span class="line">鈹斺攢鈹€ toolchain # 缂栬瘧宸ュ叿閾鹃厤缃紝鍖呮嫭缂栬瘧鍣ㄨ矾寰勩€佺紪璇戦€夐」銆侀摼鎺ラ€夐」绛夈€?</span><br></pre></td></tr></table></figure>
+
+<h3 id="缁勪欢鐨勫畾涔"><a href="#缁勪欢鐨勫畾涔" class="headerlink" title="缁勪欢鐨勫畾涔?"></a>缁勪欢鐨勫畾涔?</h3><p>*<em>1. 瀹氫箟鐨勪綅缃?</em><br><code>build\lite\components&lt;瀵瑰簲瀛愮郴缁?.json</code>锛屾垜鍦ㄤ笅闈細鎷縜pplications缁勪欢涓句緥锛堟垜鍦ㄨ繖閲屾斁涓€涓嬪浘鐗囷紝鍥剧墖閲屽搴旂殑灏辨槸閰嶇疆鏂囦欢锛?<br>    <img src="/./%E9%8D%A5%E6%83%A7%E7%B0%A5/11.png" alt="Alt text"></p>
+<p>*<em>2. 瀹氫箟鐨勫唴瀹?</em><br>缁勪欢灞炴€э紝鍖呮嫭鍚嶇О銆佸姛鑳界畝浠嬨€佹槸鍚﹀繀閫夈€佹簮鐮佽矾寰勩€佺紪璇戠洰鏍囥€丷AM銆丷OM銆佺紪璇戣緭鍑恒€佸凡閫傞厤鐨勫唴鏍搞€佸彲閰嶇疆鐨勭壒鎬у拰渚濊禆绛夈€?</p>
+<p><strong>3. 娉ㄦ剰浜嬮」</strong><br>鏂板缁勪欢鏃堕渶瑕佸湪瀵瑰簲瀛愮郴缁焜son鏂囦欢涓坊鍔犵浉搴旂殑缁勪欢瀹氫箟銆備骇鍝佹墍閰嶇疆鐨勭粍浠跺繀椤诲湪鏌愪釜瀛愮郴缁熶腑琚畾涔夎繃锛屽惁鍒欎細鏍￠獙澶辫触銆?</p>
+<h3 id="寮€鍙戦渶瑕佹帉鎻＄殑缂栬瘧鏂囦欢鍐呭"><a href="#寮€鍙戦渶瑕佹帉鎻＄殑缂栬瘧鏂囦欢鍐呭" class="headerlink" title="寮€鍙戦渶瑕佹帉鎻＄殑缂栬瘧鏂囦欢鍐呭"></a>寮€鍙戦渶瑕佹帉鎻＄殑缂栬瘧鏂囦欢鍐呭</h3><p>鎴戜滑涓嶉渶瑕佸畬鍏ㄤ簡瑙ｆ暣涓殑缂栬瘧娴佺▼锛屾垜浠彧闇€瑕佹噦寰椾粠瀛愮郴缁熷紑濮嬪悗闈㈡€庝箞璧扮殑灏卞彲浠ヤ簡銆?</p>
+<ul>
+<li><p>鎴戜滑鎵撳紑<code>/src/vendor/bearpi/bearpi_hm_nano/config.json</code>锛岃繖涓槸bearpi鐨勫瓙绯荤粺閰嶇疆鏂囦欢锛屾垜杩欓噷鍙€夊彇閮ㄥ垎浣滀负灞曠ず銆傚ぇ瀹跺彲浠ョ湅鍒板湪鎴戞敞閲婄殑鍦版柟鏈変袱涓崟璇峘applications<code>鍜? </code>wifi_iot_sample_app&#96;锛屾湁娌℃湁姣旇緝鐔熸倝锛屾病閿欙紝浠栧氨鏄垜浠湪hello world妗堜緥涓殑 applcations 鍜?app 鏂囦欢澶癸紒璇佹槑鎴戜滑缂栧啓鐨勪唬鐮佹槸鍦╝pplications杩欎竴涓瓙绯荤粺涓嬬殑锛屽苟涓旀槸鍦╳ifi_iot_sample_app杩欎釜缁勪欢涓嬬殑銆?</p>
+<blockquote>
+<p>subsystem锛氬瓙绯荤粺<br>component锛氱粍浠?<br>  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">&quot;product_name&quot;: &quot;bearpi_hm_nano&quot;,</span><br><span class="line">&quot;ohos_version&quot;: &quot;OpenHarmony 1.0&quot;,</span><br><span class="line">&quot;device_company&quot;: &quot;bearpi&quot;,</span><br><span class="line">&quot;board&quot;: &quot;bearpi_hm_nano&quot;,</span><br><span class="line">&quot;kernel_type&quot;: &quot;liteos_m&quot;,</span><br><span class="line">&quot;kernel_version&quot;: &quot;&quot;,</span><br><span class="line">&quot;subsystems&quot;: [</span><br><span class="line">  &#123;</span><br><span class="line">    &quot;subsystem&quot;: &quot;applications&quot;,  # 瀛愮郴缁熷悕绉?</span><br><span class="line">    &quot;components&quot;: [</span><br><span class="line">      &#123; &quot;component&quot;: &quot;wifi_iot_sample_app&quot;, &quot;features&quot;:[] &#125;  # 缁勪欢鍚嶇О</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    &quot;subsystem&quot;: &quot;iot_hardware&quot;,</span><br><span class="line">    &quot;components&quot;: [</span><br><span class="line">      &#123; &quot;component&quot;: &quot;iot_controller&quot;, &quot;features&quot;:[] &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    &quot;subsystem&quot;: &quot;hiviewdfx&quot;,</span><br><span class="line">    &quot;components&quot;: [</span><br><span class="line">      &#123; &quot;component&quot;: &quot;hilog_lite&quot;, &quot;features&quot;:[] &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    &quot;subsystem&quot;: &quot;distributed_schedule&quot;,</span><br><span class="line">    &quot;components&quot;: [</span><br><span class="line">      &#123; &quot;component&quot;: &quot;samgr_lite&quot;, &quot;features&quot;:[] &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    &quot;subsystem&quot;: &quot;security&quot;,</span><br><span class="line">    &quot;components&quot;: [</span><br><span class="line">      &#123; &quot;component&quot;: &quot;hichainsdk&quot;, &quot;features&quot;:[] &#125;,</span><br><span class="line">      &#123; &quot;component&quot;: &quot;deviceauth_lite&quot;, &quot;features&quot;:[] &#125;,</span><br><span class="line">      &#123; &quot;component&quot;: &quot;huks&quot;, &quot;features&quot;:</span><br><span class="line">        [</span><br><span class="line">          &quot;disable_huks_binary = false&quot;,</span><br><span class="line">          &quot;disable_authenticate = false&quot;,</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+</li>
+<li><p>涓嶈繃涓轰粈涔堢粍浠舵槸wifi_iot_sample_app杩欎竴澶ч暱涓茬殑锛屼絾鏄垜浠槸鍦╝pp鏂囦欢澶逛笅娣诲姞鎴戜滑鐨勪笟鍔′唬鐮佸憿锛熷ソ闂锛佽繖灏辫鐪嬪彟涓€涓枃浠朵簡锛宍build&#x2F;lite&#x2F;components&#x2F;applications.json<code>锛屾垜鎴彇閲岄潰鍖呭惈wifi_iot_sample_app鐨勮繖涓€娈碉紝鍙互鐪嬪埌</code>dirs<code>鎸囧悜</code>applications&#x2F;sample&#x2F;wifi-iot&#x2F;app<code>鐨刟pp鏂囦欢澶癸紝浠栫殑</code>targets<code>涔熸槸app鏂囦欢澶圭殑浣嶇疆锛屼篃灏辨槸璇磋繖涓粍浠剁殑鍚嶅瓧铏界劧鍙玚wifi_iot_sample_app</code>锛屼絾鏄疄闄呰捣浣滅敤鐨勬槸app鏂囦欢澶逛笅鐨勪笟鍔′唬鐮佹ā鍧椼€?</p>
+<blockquote>
+<p>dirs锛氳矾寰?<br>  targets锛氱洰鏍?</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">  &quot;adapted_kernel&quot;: [ &quot;liteos_a&quot; ],</span><br><span class="line">  &quot;features&quot;: [],</span><br><span class="line">  &quot;deps&quot;: &#123;&#125;</span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">  &quot;component&quot;: &quot;wifi_iot_sample_app&quot;,     # 缁勪欢鍚嶅瓧</span><br><span class="line">  &quot;description&quot;: &quot;Wifi iot samples.&quot;,</span><br><span class="line">  &quot;optional&quot;: &quot;true&quot;,</span><br><span class="line">  &quot;dirs&quot;: [</span><br><span class="line">    &quot;applications/sample/wifi-iot/app&quot;    # 鐩爣鏂囦欢澶硅矾寰?</span><br><span class="line">  ],</span><br><span class="line">  &quot;targets&quot;: [</span><br><span class="line">    &quot;//applications/sample/wifi-iot/app&quot;  # 鐩爣鏂囦欢澶?</span><br><span class="line">  ],</span><br><span class="line">  &quot;rom&quot;: &quot;&quot;,</span><br><span class="line">  &quot;ram&quot;: &quot;&quot;,</span><br><span class="line">  &quot;output&quot;: [],</span><br><span class="line">  &quot;adapted_board&quot;: [ &quot;hi3861v100&quot; ],</span><br><span class="line">  &quot;adapted_kernel&quot;: [ &quot;liteos_m&quot; ],</span><br><span class="line">  &quot;features&quot;: [],</span><br><span class="line">  &quot;deps&quot;: &#123;</span><br><span class="line">      &quot;components&quot;: [</span><br><span class="line">        &quot;utils_base&quot;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">  &quot;component&quot;: &quot;kit_framework&quot;,</span><br><span class="line">  &quot;description&quot;: &quot;&quot;,</span><br><span class="line">  &quot;optional&quot;: &quot;true&quot;,</span><br><span class="line">  &quot;dirs&quot;: [</span><br><span class="line">    &quot;applications/kit_framework&quot;</span><br></pre></td></tr></table></figure></li>
+<li><p>鐒跺悗鎴戜滑鍦ㄥ幓鐪媋pp鏂囦欢澶逛笅鐨刞BUILD.gn<code>鏂囦欢锛岃繖閲屼綘鍙兘浼氬杩欎釜鏂囦欢浜х敓鐤戞儜锛屾垜浼氬鍏惰瑙ｄ竴涓嬶紝杩欓噷鎴戜滑鍏堜笓蹇冪紪璇戞祦绋嬨€傝繖閲屾垜浠湅鍒發ite_component(&quot;app&quot;)鐨刟pp锛岃鏄庤繖涓猤n鏂囦欢鏄槸閰嶇疆app鏂囦欢澶圭殑锛屼笅闈㈢殑startup灏辨槸鎴戜滑闇€瑕佺紪璇戠殑涓氬姟妯″潡銆? 鎴戜滑鍦ㄤ笂闈㈢殑鏃跺€欏垱寤篽ello wprld涓氬姟鐨勬椂鍊欏湪hello world鐨勬枃浠跺す閲岄潰涔熷垱寤轰簡涓€涓狟uild.gn鏂囦欢锛屽叾瀹炴垜浠湪app鐨凚uild.gn鏂囦欢涓殑</code>features<code>鏉垮潡涓簲璇ュ～鍐檂涓氬姟鏂囦欢澶瑰悕绉?: 涓氬姟Build.gn鍚嶇О</code>锛屼絾鏄痵tartup鐨凚uild.gn鍚嶅瓧涓庢枃浠跺す鐨勫悕瀛楅噸浜嗭紝鎵€浠ュ彲浠ュ彧鐢ㄥ啓涓€涓猻tartup</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># app鐨凚uild.gn</span><br><span class="line">  import(&quot;//build/lite/config/component/lite_component.gni&quot;) # 閰嶇疆 Go 璇█鐨勫伐鍏烽摼鐨勮剼鏈枃浠?</span><br><span class="line"></span><br><span class="line">  lite_component(&quot;app&quot;) &#123;    # 缂栬瘧鏂囦欢澶瑰悕绉版槸app</span><br><span class="line">      features = [</span><br><span class="line">          &quot;startup&quot;,   # startup鐨凚uild.gn鍚嶅瓧涓庢枃浠跺す鐨勫悕瀛楅噸浜嗭紝鎵€浠ュ彲浠ュ彧鐢ㄥ啓涓€涓猻tartup</span><br><span class="line">      ]</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># startup鐨凚uild.gn</span><br><span class="line">  source_set(&quot;startup&quot;) &#123;    # 涓氬姟Build.gn鍚嶇О鏄痵tartup</span><br><span class="line">    sources = [</span><br><span class="line"></span><br><span class="line">    ]</span><br><span class="line"></span><br><span class="line">    include_dirs = [ ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>鍥犱负startup鐨凚uild.gn涓嶆槸寰堝畬鏁达紝杩欓噷鎴戜滑浣跨敤demolink鐨凚UILD.gn鍋氳瑙ｏ紝<code>static_library</code>鏄潤鎬佸簱鐨勬剰鎬濓紝鍦ㄨ繖閲岄潰濉殑灏辨槸涓氬姟Build.gn鐨勫悕瀛楋紝<code>sources</code>鏉垮潡鏄垜浠湪杩欎釜涓氬姟妯″潡閲岄渶瑕佺紪璇戠殑婧愭枃浠讹紝<code>include_dirs</code>鏄垜浠墍鏈夋簮鏂囦欢闇€瑕佺殑澶存枃浠讹紙搴撴枃浠讹級鐨勮矾寰?</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">  static_library(&quot;example_demolink&quot;) &#123;      # 涓氬姟Build.gn鐨勫悕瀛楁槸example_demolink</span><br><span class="line">    sources = [</span><br><span class="line">        &quot;helloworld.c&quot;    # 闇€瑕佺紪璇戠殑婧愭枃浠?</span><br><span class="line">    ]</span><br><span class="line"></span><br><span class="line">    include_dirs = [        # 婧愭枃浠堕渶瑕佺殑澶存枃浠讹紙搴撴枃浠讹級鐨勮矾寰?</span><br><span class="line">        &quot;//utils/native/lite/include&quot;,</span><br><span class="line">        &quot;//domains/iot/link/libbuild&quot;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>鏈€鍚庢垜浠€荤粨涓€涓嬶紝涓€寮€濮嬫垜浠槸鍦╜config.json<code>閲岄潰瀛愮郴缁熺殑缁勪欢鍒癭applications.json</code>閲岄潰鐨刞wifi_iot_sample_app&#96;鐨刟pp鏂囦欢澶癸紝鍐嶅埌app鏂囦欢澶逛笅鐨凚uild.gn锛屽啀鍒颁笟鍔℃ā鍧楅噷闈㈢殑Build.gn</p>
+</li>
+</ul>
+<h3 id="闄勶細BUILD-gn鍒嗘瀽锛堟湭瀹屾垚寰呯画锛"><a href="#闄勶細BUILD-gn鍒嗘瀽锛堟湭瀹屾垚寰呯画锛" class="headerlink" title="闄勶細BUILD.gn鍒嗘瀽锛堟湭瀹屾垚寰呯画锛?"></a>闄勶細BUILD.gn鍒嗘瀽锛堟湭瀹屾垚寰呯画锛?</h3><ul>
+<li><p>杩欓噷浠ed_example.c绋嬪簭涓轰緥锛岀粰澶у鍒嗘瀽BUILD.gn鏂囦欢锛屽笇鏈涘ぇ瀹惰兘涓句竴鍙嶄笁锛?<br>鍦╝pplications\sample\wifi-iot\app鐩綍涓湁涓€涓狟UILD.gn鏂囦欢锛屽ぇ瀹跺彲浠ュ皢璇ユ枃浠剁悊瑙ｄ负涓€涓鐞嗚€咃紝瀹冪鐞哸pp鐩綍涓殑姣忎釜瀛愮洰褰曪紝閫氳繃杩欎釜BUILD.gn鏂囦欢涓殑features瀛楁鍙互鍐冲畾鍝竴涓瓙鐩綍涓殑BUILD.gn涓寚瀹氱殑婧愭枃浠朵細琚紪璇戝埌鐑у綍鏂囦欢涓紝濡備笅鍥炬墍绀猴細</p>
+<blockquote>
+<p>鍓嶉潰甯#<code>鐨勬槸娉ㄩ噴鎺夌殑锛屼笉浼氳缂栬瘧锛屾病鏈塦#</code>鐨勬槸瑕佽缂栬瘧鐨勬枃浠?</p>
+</blockquote>
+<p><img src="/./%E9%8D%A5%E6%83%A7%E7%B0%A5/12.png" alt="Alt text"></p>
+</li>
+<li><p>鍋囪鎴戜滑瑕佸皢app&#x2F;B1_led鐩綍涓殑led_example.c鏂囦欢缂栬瘧鍒扮儳褰曠▼搴忎腑锛岄渶瑕佹墦寮€app&#x2F;B1_led&#x2F;BUILD.gn鏂囦欢鏌ョ湅璇ユ枃浠朵腑鐨勬簮浠ｇ爜琚负闈欐€佸簱鐨勫悕绉帮紝鍙互鐪嬪埌鍚嶇О涓篳myled&#96;锛屽涓嬪浘鎵€绀猴細<br><img src="/./%E9%8D%A5%E6%83%A7%E7%B0%A5/13.png" alt="Alt text"></p>
+</li>
+<li><p>杩欐椂鎴戜滑灏哸pp&#x2F;BUILD.gn鏂囦欢涓悗闈㈠姞涓奰B1_led:myled&#96;灏卞ぇ鍔熷憡鎴愬暒锛佸涓嬪浘鎵€绀猴細</p>
+<blockquote>
+<p>鍒繕浜嗚鎶婁箣鍓嶇殑鏂囦欢鍓嶅姞涓猔#&#96;</p>
+</blockquote>
+<p><img src="/./%E9%8D%A5%E6%83%A7%E7%B0%A5/14.png" alt="Alt text"></p>
+</li>
+<li><p>.gn鏂囦欢鐨刦eature瀛楁鏍煎紡涓猴細妯″潡婧愭枃浠舵墍鍦ㄨ矾寰?妯″潡鍚嶇О<br>璇锋敞鎰忥細.gn鏂囦欢涓殑绌虹櫧閮芥槸绌烘牸锛屼笉鏄疶ab閿紙鍒惰〃绗︼級锛屽鏋滄偍杈撳叆浜嗗埗琛ㄧ锛屽湪鐢熸垚ninja鏂囦欢鏃跺氨浼氫骇鐢熷涓嬪浘鎵€绀洪敊璇細<br><img src="/./%E9%8D%A5%E6%83%A7%E7%B0%A5/15.png" alt="Alt text"></p>
+</li>
+<li><p>鏈畬鎴愬緟缁?…..</p>
+</li>
+</ul>
+<h2 id="Hi3861鐨勫熀纭€鍐呮牳寮€鍙"><a href="#Hi3861鐨勫熀纭€鍐呮牳寮€鍙" class="headerlink" title="Hi3861鐨勫熀纭€鍐呮牳寮€鍙?"></a>Hi3861鐨勫熀纭€鍐呮牳寮€鍙?</h2><p>*<em>鍐呮牳寮€鍙戞枃妗ｇ紪鍐欎富瑕佸€熼壌锛?</em></p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://ost.51cto.com/posts/23938">OpenHarmony鏅鸿兘寮€鍙戝浠禰鍐呮牳缂栫▼路涓奭</a><br><a target="_blank" rel="noopener" href="https://ost.51cto.com/posts/23997">OpenHarmony鏅鸿兘寮€鍙戝浠禰鍐呮牳缂栫▼路涓媇</a><br>[BearPi-HM_Nano妗堜緥寮€鍙慮(<a target="_blank" rel="noopener" href="https://gitee.com/bearpi/bearpi-hm_nano/blob/master/applications/BearPi/BearPi-HM_Nano/sample/README.md#/bearpi/bearpi-hm_nano/blob/master/applications/BearPi/BearPi-HM_Nano/sample/A1_kernal_thread/README.md">https://gitee.com/bearpi/bearpi-hm_nano/blob/master/applications/BearPi/BearPi-HM_Nano/sample/README.md#/bearpi/bearpi-hm_nano/blob/master/applications/BearPi/BearPi-HM_Nano/sample/A1_kernal_thread/README.md</a>)<br>[openharmony缂栧啓鈥淗ello World鈥濈▼搴廬(<a target="_blank" rel="noopener" href="https://docs.openharmony.cn/pages/v4.0/zh-cn/device-dev/quick-start/quickstart-ide-3861-helloworld.md/">https://docs.openharmony.cn/pages/v4.0/zh-cn/device-dev/quick-start/quickstart-ide-3861-helloworld.md/</a>)  </p>
+</blockquote>
+<h3 id="浠€涔堟槸鍐呮牳锛"><a href="#浠€涔堟槸鍐呮牳锛" class="headerlink" title="浠€涔堟槸鍐呮牳锛?"></a>浠€涔堟槸鍐呮牳锛?</h3><p> 浠€涔堟槸鍐呮牳锛熸垨鑰呰鍐呮牳鍦ㄤ竴涓搷浣滅郴缁熶腑璧峰埌涓€涓粈涔堟牱鐨勪綔鐢紵鐩镐俊鍒濇鎺ヨЕ杩欎釜璇嶇殑浼欎即浠篃浼氭湁鍚屾牱鐨勭枒闂€備笉杩囦笉鐢ㄦ媴蹇冿紝鎴戜細灏藉彲鑳藉湴閫氫織鍦颁粙缁嶅唴鏍哥殑鐩稿叧鐭ヨ瘑锛屼互渚垮ぇ瀹惰兘澶熸洿濂藉湴鍘讳綋浼氬唴鏍哥紪绋嬨€?</p>
+<p>鈥?鎴戜滑鍏堟潵鐪嬩竴寮犲浘锛岃繖鏄疧penHarmony瀹樼綉鍙戝竷鐨勬妧鏈灦鏋勫浘<br><img src="/./%E9%8D%A5%E6%83%A7%E7%B0%A5/16.png" alt="Alt text"></p>
+<p> 鎴戜滑鍙互鐪嬪埌鏈€搴曞眰鍙仛鍐呮牳灞傦紝鏈塋inux锛孡iteOS绛夈€傚唴鏍稿湪鏁翠釜鏋舵瀯锛屾垨鑰呮搷浣滅郴缁熶腑璧峰埌涓€涓牳蹇冧綔鐢紝浠栬礋璐ｇ鐞嗚绠楁満绯荤粺鍐呯殑璧勬簮鍜岀‖浠惰澶囷紝鎻愪緵缁欓《灞傜殑搴旂敤灞備竴涓粺涓€瑙勮寖鐨勬帴鍙ｏ紝浠庤€屼娇寰楁暣涓郴缁熻兘澶熷畬鎴愬簲鐢ㄤ笌纭欢鐨勪氦浜掋€?</p>
+<p>鈥?鍏蜂綋鐐规潵璇达紝鍐呮牳鍙互鍋氫互涓嬬浉鍏崇殑宸ヤ綔锛?</p>
+<blockquote>
+<ol>
+<li>杩涚▼绠＄悊  </li>
+<li>鍐呭瓨绠＄悊  </li>
+<li>鏂囦欢璧勬簮绠＄悊  </li>
+<li>缃戠粶閫氫俊绠＄悊  </li>
+<li>璁惧椹卞姩绠＄悊</li>
+</ol>
+</blockquote>
+<p>鈥嬪綋鐒朵笉灞€闄愪簬杩欎簺锛岃繖閲屽彧鏄粰鍑哄叿浣撶殑渚嬪瓙渚涘ぇ瀹剁悊瑙ｏ紝濡傛灉瀹炲湪闅句互鐞嗚В锛岄偅涔堟垜鍐嶄妇涓€涓緥瀛愶紝杩涚▼銆傚彲鑳戒綘娌″惉杩囪繘绋嬶紝浣嗕綘涓€瀹氭墦寮€杩囦换鍔＄鐞嗗櫒銆?<br>  <img src="/./%E9%8D%A5%E6%83%A7%E7%B0%A5/17.png" alt="Alt text"></p>
+<p>  杩欎簺閮芥槸杩涚▼锛屼竴涓繘绋嬪張鐢卞涓嚎绋嬬粍鎴愩€傞偅涔圕PU锛屽唴瀛橈紝纭洏锛岀綉缁滆繖浜涚‖浠跺眰闈㈣祫婧愭槸鎬庝箞鍚堢悊鍒嗛厤鍒版垜浠蒋浠剁殑鍚勪釜杩涚▼涓憿锛熻繖灏辨槸鍐呮牳甯姪鎴戜滑瀹屾垚鐨勪簨鎯咃紝鎴戜滑骞朵笉鍏冲績鎴戜滑璁惧涓婄殑搴旂敤鍦ㄥ摢閲屾墽琛岋紝濡備綍鍒嗛厤璧勬簮锛屽唴鏍镐細瀹屾垚杩欎簺浜嬫儏銆傛垜浠棩甯镐笌杞欢浜や簰锛岃€屽唴鏍镐細甯姪鎴戜滑瀹屾垚杞欢鍜岀‖浠剁殑浜や簰銆?</p>
+<h4 id="Openharmony鍐呮牳"><a href="#Openharmony鍐呮牳" class="headerlink" title="Openharmony鍐呮牳"></a>Openharmony鍐呮牳</h4><p>鏄庣櫧浜嗕粈涔堟槸鍐呮牳鍚庯紝鎴戜滑鏉ョ湅鐪婳penHarmony鐨勫唴鏍告槸鎬庝箞鏍疯璁＄殑鍚с€?</p>
+<p>鈥婳penHarmony閲囩敤鐨勬槸澶氬唴鏍歌璁?鏈夊熀浜嶭inux鍐呮牳鐨勬爣鍑嗙郴缁燂紝鏈夊熀浜嶭iteOS-A鐨勫皬鍨嬬郴缁燂紝涔熸湁鍩轰簬LiteOS-M鐨勮交閲忕郴缁熴€備粬浠垎鍒€傞厤涓嶅悓鐨勮澶囷紝姣斿璇存櫤鑳芥墜琛ㄥ氨鏄交閲忕骇鍒殑锛屾櫤鑳芥苯杞﹀氨鏄爣鍑嗙骇鍒殑绛夌瓑銆傛湰绡囧苟涓嶄粙缁嶆爣鍑嗙郴缁熷拰灏忓瀷绯荤粺锛岃交閲忕郴缁熸洿鍔犻€傚悎鍒濆鑰呫€備篃灏辨槸Hi3861鎵€鎼浇鐨勭郴缁熴€?</p>
+<h4 id="LiteOS-M鍐呮牳"><a href="#LiteOS-M鍐呮牳" class="headerlink" title="LiteOS-M鍐呮牳"></a>LiteOS-M鍐呮牳</h4><p>鈥?涓嬮潰鏄竴寮燣iteOS-M鐨勬灦鏋勫浘<br>  <img src="/./%E9%8D%A5%E6%83%A7%E7%B0%A5/18.png" alt="Alt text"><br>鐩綍缁撴瀯濡備笅锛?</p>
+<blockquote>
+<p>娉ㄦ剰锛氳繖閲岃鐨勬槸openharmony瀹屾暣婧愮爜锛屾垜浠湪瀛︿範bearpi鐨勬椂鍊欎笉闇€瑕佸畬鏁寸殑婧愮爜锛屽畬鏁存簮鐮佷笅鏈夛細linux锛宭iteos_a锛宭iteos_m锛寀niproton锛屽洓涓唴鏍?</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">/kernel/liteos_m</span><br><span class="line">鈹溾攢鈹€ arch                 # 鍐呮牳鎸囦护鏋舵瀯灞傜洰褰?</span><br><span class="line">鈹?  鈹溾攢鈹€ arm              # arm 鏋舵瀯浠ｇ爜</span><br><span class="line">鈹?  鈹?  鈹溾攢鈹€ arm9         # arm9 鏋舵瀯浠ｇ爜</span><br><span class="line">鈹?  鈹?  鈹溾攢鈹€ cortex-m3    # cortex-m3鏋舵瀯浠ｇ爜</span><br><span class="line">鈹?  鈹?  鈹溾攢鈹€ cortex-m33   # cortex-m33鏋舵瀯浠ｇ爜</span><br><span class="line">鈹?  鈹?  鈹溾攢鈹€ cortex-m4    # cortex-m4鏋舵瀯浠ｇ爜</span><br><span class="line">鈹?  鈹?  鈹溾攢鈹€ cortex-m55   # cortex-m55鏋舵瀯浠ｇ爜</span><br><span class="line">鈹?  鈹?  鈹溾攢鈹€ cortex-m7    # cortex-m7鏋舵瀯浠ｇ爜</span><br><span class="line">鈹?  鈹?  鈹斺攢鈹€ include      # arm鏋舵瀯鍏叡澶存枃浠剁洰褰?</span><br><span class="line">鈹?  鈹溾攢鈹€ csky             # csky鏋舵瀯浠ｇ爜</span><br><span class="line">鈹?  鈹?  鈹斺攢鈹€ v2           # csky v2鏋舵瀯浠ｇ爜</span><br><span class="line">鈹?  鈹溾攢鈹€ include          # 鏋舵瀯灞傚澶栨帴鍙ｅ瓨鏀剧洰褰?</span><br><span class="line">鈹?  鈹溾攢鈹€ risc-v           # risc-v 鏋舵瀯</span><br><span class="line">鈹?  鈹?  鈹溾攢鈹€ nuclei       # 鑺潵绉戞妧risc-v鏋舵瀯浠ｇ爜</span><br><span class="line">鈹?  鈹?  鈹斺攢鈹€ riscv32      # risc-v瀹樻柟閫氱敤鏋舵瀯浠ｇ爜</span><br><span class="line">鈹?  鈹斺攢鈹€ xtensa           # xtensa 鏋舵瀯浠ｇ爜</span><br><span class="line">鈹?      鈹斺攢鈹€ lx6          # xtensa lx6鏋舵瀯浠ｇ爜</span><br><span class="line">鈹溾攢鈹€ components           # 鍙€夌粍浠?</span><br><span class="line">鈹?  鈹溾攢鈹€ backtrace        # 鏍堝洖婧姛鑳?</span><br><span class="line">鈹?  鈹溾攢鈹€ cppsupport       # C++鏀寔</span><br><span class="line">鈹?  鈹溾攢鈹€ cpup             # CPUP鍔熻兘</span><br><span class="line">鈹?  鈹溾攢鈹€ dynlink          # 鍔ㄦ€佸姞杞戒笌閾炬帴</span><br><span class="line">鈹?  鈹溾攢鈹€ exchook          # 寮傚父閽╁瓙</span><br><span class="line">鈹?  鈹溾攢鈹€ fs               # 鏂囦欢绯荤粺</span><br><span class="line">鈹?  鈹溾攢鈹€ lmk              # Low memory killer 鏈哄埗</span><br><span class="line">鈹?  鈹溾攢鈹€ lms              # Lite memory sanitizer 鏈哄埗</span><br><span class="line">鈹?  鈹溾攢鈹€ net              # Network鍔熻兘</span><br><span class="line">鈹?  鈹溾攢鈹€ power            # 浣庡姛鑰楃鐞?</span><br><span class="line">鈹?  鈹溾攢鈹€ shell            # shell鍔熻兘</span><br><span class="line">鈹?  鈹斺攢鈹€ trace            # trace 宸ュ叿</span><br><span class="line">鈹溾攢鈹€ drivers              # 椹卞姩妗嗘灦Kconfig</span><br><span class="line">鈹溾攢鈹€ kal                  # 鍐呮牳鎶借薄灞?</span><br><span class="line">鈹?  鈹溾攢鈹€ cmsis            # cmsis鏍囧噯鎺ュ彛鏀寔</span><br><span class="line">鈹?  鈹斺攢鈹€ posix            # posix鏍囧噯鎺ュ彛鏀寔</span><br><span class="line">鈹溾攢鈹€ kernel               # 鍐呮牳鏈€灏忓姛鑳介泦鏀寔</span><br><span class="line">鈹?  鈹溾攢鈹€ include          # 瀵瑰鎺ュ彛瀛樻斁鐩綍</span><br><span class="line">鈹?  鈹斺攢鈹€ src              # 鍐呮牳鏈€灏忓姛鑳介泦婧愮爜</span><br><span class="line">鈹溾攢鈹€ testsuites           # 鍐呮牳娴嬭瘯鐢ㄤ緥</span><br><span class="line">鈹溾攢鈹€ tools                # 鍐呮牳宸ュ叿</span><br><span class="line">鈹溾攢鈹€ utils                # 閫氱敤鍏叡鐩綍</span><br></pre></td></tr></table></figure>
+<p>鍏蜂綋璇峰弬鑰冿細<a target="_blank" rel="noopener" href="https://docs.openharmony.cn/pages/v4.0/zh-cn/device-dev/kernel/kernel-mini-overview.md/">杞婚噺绯荤粺鍐呮牳姒傝堪</a></p>
+<p>涓嬮潰閲嶇偣浠嬬粛KAL鎶借薄灞?鍜?鍩虹鍐呮牳鐨勬搷浣?</p>
+<h5 id="KAL鎶借薄灞"><a href="#KAL鎶借薄灞" class="headerlink" title="KAL鎶借薄灞?"></a>KAL鎶借薄灞?</h5><p>鈥?鐩镐俊澶у杩樻槸浼氭湁鐤戞儜锛屼粈涔堟槸KAL鎶借薄灞傦紵<br>鈥?Kernel Abstraction Layer</p>
+<p>鈥?鍦ㄥ垰鍒氱殑鍐呮牳涓垜浠彁鍒颁簡锛屽唴鏍镐富瑕佸畬鎴愮殑鏄蒋浠朵笌纭欢鐨勪氦浜掞紝浠栦細缁欏簲鐢ㄥ眰鎻愪緵缁熶竴鐨勮鑼冩帴鍙ｏ紝鑰孠AL鎶借薄灞傛鏄唴鏍稿搴旂敤灞傛彁渚涚殑鎺ュ彛闆嗗悎銆傚簲鐢ㄧ▼搴忓彲浠ラ€氳繃KAL鎶借薄灞傚畬鎴愬纭欢鐨勬帶鍒朵氦浜掋€?</p>
+<p>鈥?鎶借薄灞傛槸鍥犱负浠栭殣钘忎簡涓庣‖浠舵帴鍙ｅ叿浣撶殑浜や簰閫昏緫锛屽紑鍙戜汉鍛樺彧闇€瑕佸叧蹇冨浣曟搷浣滅‖浠讹紝鑰屾棤闇€鍏冲績纭欢搴曞眰鐨勭粏鑺傦紝澶уぇ鎻愰珮浜嗗彲绉绘鎬у拰缁存姢鎬с€?</p>
+<p>鈥?浠ユ垜鐨勮搴﹀幓鐪嬶紝KAL绠€鍗曟潵璇村氨鏄竴鍫嗘帴鍙ｏ紝甯姪浣犲幓鎿嶆帶纭欢銆侰MSIS涓嶱OSIX灏辨槸鍏锋湁缁熶竴瑙勮寖鐨勪竴浜涙帴鍙ｃ€傞€氳繃浠栦滑鎴戜滑灏卞彲浠ュ幓鎺у埗涓€浜涘熀纭€鐨勫唴鏍革紝绾跨▼锛岃蒋浠跺畾鏃跺櫒锛屼簰鏂ラ攣锛屼俊鍙烽噺绛夌瓑銆傛蹇靛氨鍏堢畝鍗曚粙缁嶈繖涔堝锛屾劅鍏磋叮鐨勪紮浼翠滑鍙互涓婂畼缃戞煡鐪嬫洿澶氱殑鍏充簬OpenHarmony鍐呮牳鐨勪俊鎭€備笅闈㈡垜浼氬甫鐫€澶у缂栫爜鎿嶄綔锛屼粠瀹為檯鍘讳綋浼氬唴鏍哥紪绋嬨€?</p>
+<h3 id="绾跨▼绠＄悊"><a href="#绾跨▼绠＄悊" class="headerlink" title="绾跨▼绠＄悊"></a>绾跨▼绠＄悊</h3><p>鍦ㄦ垜浠垵娆℃帴瑙﹀埌openharmony杞婚噺绯荤粺寮€鍙戯紙hi3861寮€鍙戯級鐨勬椂鍊欙紝绗竴涓帴瑙︾殑鑲畾鏄浣曚娇鐢ㄧ嚎绋嬫潵瀹屾垚鎴戜滑鐨勪换鍔★紝閭ｄ箞鎺ヤ笅鏉ュ氨璁╂垜浠紑濮嬪埄鐢ㄧ嚎绋嬫潵璺熶粬璇翠竴澹扳€淗ello,openharmony!鈥?</p>
+<p>鈥?鍦ㄧ鐞嗙嚎绋嬪墠锛屾垜浠渶瑕佷簡瑙ｇ嚎绋嬶紝绾跨▼鏄皟搴︾殑鍩烘湰鍗曚綅锛屽叿鏈夌嫭绔嬬殑鏍堢┖闂村拰瀵勫瓨鍣ㄤ笂涓嬫枃锛岀浉姣斾笌杩涚▼锛屼粬鏄交閲忕殑銆備妇涓€涓疄闄呯殑渚嬪瓙锛屽姩鐗╁洯鍗栫エ銆?</p>
+<p>鈥?瀵逛簬鍔ㄧ墿鍥崠绁ㄨ繖浠朵簨鏈韩鑰岃█鏄竴涓繘绋嬶紝鑰屾瘡涓€涓拱绁ㄧ殑浜哄彲浠ョ湅浣滀竴涓嚎绋嬶紝鍦ㄥ涓敭绁ㄥ彛澶勶紝鎴戜滑骞跺彂鎵ц锛屽苟琛岃绠楋紝鍏卞悓娑堣垂鍔ㄧ墿鍥殑闂ㄧエ锛屽儚浜彈鍏卞悓鐨勫唴瀛樿祫婧愮┖闂翠竴鏍枫€備负浠€涔堣绾跨▼绠＄悊鍛紵浣犳垜閮藉笇鏈涗拱鍒扮エ锛屼絾鏄エ鏈夐檺锛屾垜浠兘涓嶅笇鏈涚湅鍒板敭绁ㄥ巺涓€绡囨贩涔憋紝鍥犳瀵圭嚎绋嬭繘琛岀鐞嗘槸闈炲父閲嶈鐨勪竴浠朵簨鎯呫€?</p>
+<h4 id="绾跨▼鐘舵€佺殑浠嬬粛"><a href="#绾跨▼鐘舵€佺殑浠嬬粛" class="headerlink" title="绾跨▼鐘舵€佺殑浠嬬粛"></a>绾跨▼鐘舵€佺殑浠嬬粛</h4><p>棣栧厛浠嬬粛涓€涓嬬嚎绋嬬殑鍑犱釜鐘舵€侊紝浠栦滑鍒嗗埆鏈夛細</p>
+<ul>
+<li>鍒涘缓</li>
+<li>灏辩华锛圧eady锛夛細璇ヤ换鍔″湪灏辩华闃熷垪涓紝鍙瓑寰匔PU銆? </li>
+<li>杩愯锛圧unning锛夛細璇ヤ换鍔℃鍦ㄦ墽琛屻€? </li>
+<li>闃诲锛圔locked锛夛細璇ヤ换鍔′笉鍦ㄥ氨缁槦鍒椾腑銆傚寘鍚换鍔¤鎸傝捣锛坰uspend鐘舵€侊級銆佷换鍔¤寤舵椂锛坉elay鐘舵€侊級銆佷换鍔℃鍦ㄧ瓑寰呬俊鍙烽噺銆佽鍐欓槦鍒楁垨鑰呯瓑寰呬簨浠剁瓑銆? </li>
+<li>缁堟锛圖ead锛夛細璇ヤ换鍔¤繍琛岀粨鏉燂紝绛夊緟绯荤粺鍥炴敹璧勬簮銆? </li>
+<li>浠诲姟鐘舵€佽縼绉荤ず鎰忓浘<br><img src="/./%E9%8D%A5%E6%83%A7%E7%B0%A5/19.png" alt="Alt text"><br>杩欓噷鎴戜笉灞曞紑浠诲姟鐘舵€佽縼绉昏鏄庯紝鍥犱负杩欎釜涓嶉噸瑕侊紝濡傛灉浣犳湁鍏磋叮浜嗚В锛屽彲浠ョЩ姝ワ細<a target="_blank" rel="noopener" href="https://docs.openharmony.cn/pages/v4.0/zh-cn/device-dev/kernel/kernel-mini-basic-task.md/">杞婚噺绯荤粺浠诲姟绠＄悊</a></li>
+</ul>
+<h4 id="鍗曠嚎绋嬩娇鐢ㄦ祦绋"><a href="#鍗曠嚎绋嬩娇鐢ㄦ祦绋" class="headerlink" title="鍗曠嚎绋嬩娇鐢ㄦ祦绋?"></a>鍗曠嚎绋嬩娇鐢ㄦ祦绋?</h4><p>  鈥?鍥炲繂绗竴涓猦elloworld.c鐨勪緥瀛? </p>
+<p>  鈥?鎴戜滑瑕佺紪鍐欑殑绋嬪簭鏍蜂緥灏卞湪婧愮爜鏍圭洰褰曚笅鐨勶細<code>applications/sample/wifi-iot/app/</code>  </p>
+<p>  鈥?涓嬮潰灏嗗叿浣撴紨绀哄浣曠紪鍐欑▼搴忔牱渚嬨€? </p>
+<ol>
+<li><p>鏂板缓鏍蜂緥鐩綍<br>  <code>applications/sample/wifi-iot/app/thread_demo</code>  </p>
+</li>
+<li><p>鏂板缓婧愭枃浠跺拰gn鏂囦欢<br><code>applications/sample/wifi-iot/app/thread_demo/Thread.c</code><br><code>applications/sample/wifi-iot/app/thread_demo/BUILD.gn</code><br>鍋囪浣犵幇鍦ㄥ垱寤哄ソ浜嗘枃浠跺す鍜岄噷闈㈢殑<code>Thread.c</code>锛宍BUILD.gn&#96;銆?   </p>
+</li>
+<li><p>浠嬬粛绾跨▼</p>
+<ul>
+<li>棣栧厛鎴戜滑濡備綍鍒涘缓绾跨▼锛?<ul>
+<li>鎴戜滑鎯虫兂鎴戜滑鍦ㄥ垱寤哄彉閲忔椂鏄€庝箞鍋氱殑锛屾槸涓嶆槸鍏堝啓鏁版嵁绫诲瀷鍚庤窡鍚嶅瓧锛屽儚锛歚int a;&#96;</li>
+<li>閭ｄ箞绾跨▼鐨勫垱寤洪€昏緫璺熻繖涓樊涓嶅锛岀被浼硷細<code>osThreadAttr_t attr;</code></li>
+<li><code>osThreadAttr_t</code>鏄粈涔堬紵浠栨槸涓€涓粨鏋勪綋锛屽畾涔夊湪<code>cmsis_os2.h</code>閲岄潰锛屽唴瀹瑰涓嬶細 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">  <span class="comment">/** Thread name */</span></span><br><span class="line">  <span class="type">const</span> <span class="type">char</span>                   *name;</span><br><span class="line">  <span class="comment">/** Thread attribute bits */</span></span><br><span class="line">  <span class="type">uint32_t</span>                 attr_bits;</span><br><span class="line">  <span class="comment">/** Memory for the thread control block */</span></span><br><span class="line">  <span class="type">void</span>                      *cb_mem;</span><br><span class="line">  <span class="comment">/** Size of the memory for the thread control block */</span></span><br><span class="line">  <span class="type">uint32_t</span>                   cb_size;</span><br><span class="line">  <span class="comment">/** Memory for the thread stack */</span></span><br><span class="line">  <span class="type">void</span>                   *stack_mem;</span><br><span class="line">  <span class="comment">/** Size of the thread stack */</span></span><br><span class="line">  <span class="type">uint32_t</span>                stack_size;</span><br><span class="line">  <span class="comment">/** Thread priority */</span></span><br><span class="line">  osPriority_t              priority;</span><br><span class="line">  <span class="comment">/** TrustZone module of the thread */</span></span><br><span class="line">  TZ_ModuleId_t            tz_module;</span><br><span class="line">  <span class="comment">/** Reserved */</span></span><br><span class="line">  <span class="type">uint32_t</span>                  reserved;</span><br><span class="line">&#125; osThreadAttr_t;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>杩欐槸绾跨▼鐨勭粨鏋勪綋锛屽畠鍏锋湁浠ヤ笅灞炴€э細<blockquote>
+<p><code>name</code>锛氱嚎绋嬬殑鍚嶇О銆?<br>  <code>attr_bits</code>锛氱嚎绋嬪睘鎬т綅銆?<br>  <code>cb_mem</code>锛氱嚎绋嬫帶鍒跺潡鐨勫唴瀛樺湴鍧€銆?<br>  <code>cb_size</code>锛氱嚎绋嬫帶鍒跺潡鐨勫唴瀛樺ぇ灏忋€?<br>  <code>stack_mem</code>锛氱嚎绋嬫爤鐨勫唴瀛樺湴鍧€銆?<br>  <code>stack_size</code>锛氱嚎绋嬫爤鐨勫ぇ灏忋€?<br>  <code>priority</code>锛氱嚎绋嬬殑浼樺厛绾с€?<br>  <code>tz_module</code>锛氱嚎绋嬫墍灞炵殑TrustZone妯″潡銆?<br>  <code>reserved</code>锛氫繚鐣欏瓧娈点€?</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>鍐嶈€呭浣曡绾跨▼鍚姩锛?<ul>
+<li>*<em>鍥炵瓟锛?</em> <code>osThreadNew((osThreadFunc_t)Thread,NULL,&amp;attr)</code></li>
+<li>浠栫殑鍑芥暟鍘熷瀷闀夸笅闈㈣繖鏍凤紝杩欐槸鍒涘缓绾跨▼鐨勬帴鍙ｅ嚱鏁帮紝浠栨湁涓変釜鍙傛暟锛屼竴涓繑鍥炲€硷紝<strong>涓嶉渶瑕佹垜浠帉鎻★紝鎴戜滑浼氱敤灏辫</strong><blockquote>
+<p><code>func</code>锛氭槸绾跨▼鐨勫洖璋冨嚱鏁帮紝浣犲垱寤虹殑杩欎釜绾跨▼浼氭墽琛岃繖娈靛嚱鏁扮殑鍐呭銆?<br>  <code>arguments</code>锛氱嚎绋嬪洖璋冨嚱鏁扮殑鍙傛暟銆?<br>  <code>attr</code>锛氱嚎绋嬬殑灞炴€э紝涔熷氨鏄垜浠箣鍓嶅垱寤虹殑绾跨▼<br>  杩斿洖鍊硷細绾跨▼鐨刬d 濡傛灉id涓嶄负绌哄垯璇存槑鎴愬姛銆?</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">osThreadId_t <span class="title function_">osThreadNew</span><span class="params">(osThreadFunc_t func, <span class="type">void</span> *argument, <span class="type">const</span> osThreadAttr_t *attr)</span></span><br><span class="line">&#123;</span><br><span class="line">    UINT32 uwTid;</span><br><span class="line">    UINT32 uwRet;</span><br><span class="line">    LosTaskCB *pstTaskCB = <span class="literal">NULL</span>;</span><br><span class="line">    TSK_INIT_PARAM_S stTskInitParam;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (OS_INT_ACTIVE) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> ((attr == <span class="literal">NULL</span>) || (func == <span class="literal">NULL</span>) || (attr-&gt;priority &lt; osPriorityLow1) ||</span><br><span class="line">        (attr-&gt;priority &gt; osPriorityAboveNormal6)) &#123;</span><br><span class="line">        <span class="keyword">return</span> (osThreadId_t)<span class="literal">NULL</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    (<span class="type">void</span>)memset_s(&amp;stTskInitParam, <span class="keyword">sizeof</span>(TSK_INIT_PARAM_S), <span class="number">0</span>, <span class="keyword">sizeof</span>(TSK_INIT_PARAM_S));</span><br><span class="line">    stTskInitParam.pfnTaskEntry = (TSK_ENTRY_FUNC)func;</span><br><span class="line"><span class="meta">#<span class="keyword">ifndef</span> LITEOS_WIFI_IOT_VERSION</span></span><br><span class="line">    stTskInitParam.uwArg = (UINT32)argument;</span><br><span class="line"><span class="meta">#<span class="keyword">else</span></span></span><br><span class="line">    stTskInitParam.auwArgs[<span class="number">0</span>] = (UINT32)argument;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line">    stTskInitParam.uwStackSize = attr-&gt;stack_size;</span><br><span class="line">    stTskInitParam.pcName = (CHAR *)attr-&gt;name;</span><br><span class="line">    stTskInitParam.usTaskPrio = OS_TASK_PRIORITY_LOWEST - ((UINT16)(attr-&gt;priority) - LOS_PRIORITY_WIN); <span class="comment">/* 0~31 */</span></span><br><span class="line"></span><br><span class="line">    uwRet = LOS_TaskCreate(&amp;uwTid, &amp;stTskInitParam);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (LOS_OK != uwRet) &#123;</span><br><span class="line">        <span class="keyword">return</span> (osThreadId_t)<span class="literal">NULL</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    pstTaskCB = OS_TCB_FROM_TID(uwTid);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> (osThreadId_t)pstTaskCB;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>鏈€鍚庢垜浠浣曞皢绾跨▼缁堟鍛紵<ul>
+<li><code>osStatus_t osThreadTerminate (osThreadId_t thread_id);</code></li>
+<li>鏄剧劧鎴戜滑鍙浼犲叆绾跨▼鐨刬d灏变細璁╄绾跨▼缁堟锛岃繑鍥炲€兼槸涓€涓姸鎬佺爜</li>
+<li>鎴戣繖閲岀粰鍑哄叏閮ㄧ殑鐘舵€佺爜<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">enum</span> &#123;</span></span><br><span class="line">  <span class="comment">/** Operation completed successfully */</span></span><br><span class="line">  osOK                      =  <span class="number">0</span>,</span><br><span class="line">  <span class="comment">/** Unspecified error */</span></span><br><span class="line">  osError                   = <span class="number">-1</span>,</span><br><span class="line">  <span class="comment">/** Timeout */</span></span><br><span class="line">  osErrorTimeout            = <span class="number">-2</span>,</span><br><span class="line">  <span class="comment">/** Resource error */</span></span><br><span class="line">  osErrorResource           = <span class="number">-3</span>,</span><br><span class="line">  <span class="comment">/** Incorrect parameter */</span></span><br><span class="line">  osErrorParameter          = <span class="number">-4</span>,</span><br><span class="line">  <span class="comment">/** Insufficient memory */</span></span><br><span class="line">  osErrorNoMemory           = <span class="number">-5</span>,</span><br><span class="line">  <span class="comment">/** Service interruption */</span></span><br><span class="line">  osErrorISR                = <span class="number">-6</span>,</span><br><span class="line">  <span class="comment">/** Reserved. It is used to prevent the compiler from optimizing enumerations. */</span></span><br><span class="line">  osStatusReserved          = <span class="number">0x7FFFFFFF</span></span><br><span class="line">&#125; osStatus_t;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>缂栧啓婧愮爜</p>
+<ul>
+<li><code>Thread.c</code>  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//鍏堝鍏ュご鏂囦欢</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;ohos_init.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;ohos_types.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">//瀹氫箟绾跨▼浼樺厛绾?</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> myThread_priority 24  </span></span><br><span class="line"></span><br><span class="line"><span class="comment">//鍒涘缓鍔熻兘瀹炵幇鐨勫嚱鏁?</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">Hello_openharmony</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Hello openharmony!\n&quot;</span>);</span><br><span class="line">    osDelay(<span class="number">100</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//鍒涘缓涓€涓潤鎬佸嚱鏁版潵瀹氫箟鍜岀鐞嗙嚎绋?</span></span><br><span class="line"><span class="type">static</span> <span class="type">void</span> <span class="title function_">Task</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="comment">//鍒涘缓绾跨▼</span></span><br><span class="line">  osThreadAttr_t attr;</span><br><span class="line"></span><br><span class="line">  attr.name = <span class="string">&quot;myThread&quot;</span>;    <span class="comment">//寤虹珛绾跨▼褰撲腑鐨勭涓€涓换鍔?</span></span><br><span class="line">  attr.attr_bits = <span class="number">0U</span>;           <span class="comment">//绾跨▼灞炴€т綅</span></span><br><span class="line">  attr.cb_mem = <span class="literal">NULL</span>;       <span class="comment">//鐢ㄦ埛鎸囧畾鐨勬帶鍒跺潡鎸囬拡</span></span><br><span class="line">  attr.cb_size = <span class="number">0U</span>;        <span class="comment">//鐢ㄦ埛鎸囧畾鐨勬帶鍒跺潡澶у皬锛屽崟浣嶏細瀛楄妭</span></span><br><span class="line">  attr.stack_mem = <span class="literal">NULL</span>;    <span class="comment">//鐢ㄦ埛鎸囧畾鐨勭嚎绋嬫爤鎸囬拡</span></span><br><span class="line">  attr.stack_size = <span class="number">1024</span>*<span class="number">4</span>;        <span class="comment">//绾跨▼鏍堝ぇ灏忥紝鍗曚綅锛氬瓧鑺?</span></span><br><span class="line">  attr.priority = myThread_priority;       <span class="comment">//绾跨▼浼樺厛绾?</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">//绾跨▼鍚姩浠诲姟</span></span><br><span class="line">  osThreadId_t ID = osThreadNew((osThreadFunc_t)Hello_openharmony, <span class="literal">NULL</span>, &amp;attr);</span><br><span class="line">  <span class="keyword">if</span> (ID == <span class="literal">NULL</span>) &#123;  </span><br><span class="line">      <span class="built_in">printf</span>(<span class="string">&quot;Failed to create hello_openharmony Thread!\n&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 浼戠湢5绉?</span></span><br><span class="line">  osDelay(<span class="number">500</span>);</span><br><span class="line">  <span class="comment">// 缁堟绾跨▼</span></span><br><span class="line">  osStatus_t status = osThreadTerminate(ID);</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;[Thread Test] printThread stop, status = %d.\r\n&quot;</span>, status);</span><br><span class="line">&#125;</span><br><span class="line">APP_FEATURE_INIT(Task);</span><br></pre></td></tr></table></figure></li>
+<li><code>BUILD.gn</code><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">static_library(&quot;my_first_thread&quot;)&#123;  # 鍙栧悕瀛?</span><br><span class="line">    sources = [</span><br><span class="line">        &quot;Thread.c&quot;   # 瑕佺紪璇戠殑婧愭枃浠?</span><br><span class="line">    ]</span><br><span class="line">    include_dirs = [</span><br><span class="line">        &quot;//utils/native/lite/include&quot;  # 澶存枃浠剁殑璺緞</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ol>
+<h4 id="澶氱嚎绋嬩娇鐢ㄦ祦绋"><a href="#澶氱嚎绋嬩娇鐢ㄦ祦绋" class="headerlink" title="澶氱嚎绋嬩娇鐢ㄦ祦绋?"></a>澶氱嚎绋嬩娇鐢ㄦ祦绋?</h4><p>鍏跺疄浠栬窡鍗曠嚎绋嬫槸涓€鏍风殑锛屽彧涓嶈繃鎴戜滑鍙互鐪佺暐涓€閮ㄥ垎绾跨▼缁撴瀯浣撶殑瀹氫箟锛岀被浼间簬锛?<br>  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">osThreadAttr_t attr;</span><br><span class="line">attr.attr_bits=<span class="number">0U</span>;</span><br><span class="line">attr.cb_mem=<span class="literal">NULL</span>;</span><br><span class="line">attr.cb_size=<span class="number">0U</span>;</span><br><span class="line">attr.stack_mem=<span class="literal">NULL</span>;</span><br><span class="line">attr.stack_size=<span class="number">1024</span>*<span class="number">4</span>;</span><br><span class="line">attr.priority=<span class="number">25</span>;</span><br><span class="line"></span><br><span class="line">attr.name=Thread_1;</span><br><span class="line"><span class="keyword">if</span> (osThreadNew((osThreadFunc_t)Thread_1,<span class="literal">NULL</span>,&amp;attr)==<span class="literal">NULL</span>)&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Failed to create Theard_1!\r\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">attr.name=Thread_2;</span><br><span class="line"><span class="keyword">if</span> (osThreadNew((osThreadFunc_t)Thread_2,<span class="literal">NULL</span>,&amp;attr)==<span class="literal">NULL</span>)&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Failed to create Thread_2!\r\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">attr.name=Thread_3;</span><br><span class="line"><span class="keyword">if</span> (osThreadNew((osThreadFunc_t)Thread_3,<span class="literal">NULL</span>,&amp;attr)==<span class="literal">NULL</span>)&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Failed to create Thread_3!\r\n&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>  杩欓噷鎴戝彧鏄妸鍚嶅瓧閲嶆柊瀹氫箟浜嗕竴涓嬶紝浣嗘槸鎴戝垱寤轰簡3涓嚎绋嬶紝濡傛灉鎴戞兂鏀瑰彉绗?涓殑绾跨▼鐨勪紭鍏堢骇锛岀3涓嚎绋嬬殑鏍堝ぇ灏忥紙涓€鑸笉鍋氭洿鏀癸級锛屾€庝箞鏀癸紵鎴戝湪涓嬮潰缁欎釜淇敼绀轰緥锛?<br>  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">osThreadAttr_t attr;</span><br><span class="line">attr.attr_bits=<span class="number">0U</span>;</span><br><span class="line">attr.cb_mem=<span class="literal">NULL</span>;</span><br><span class="line">attr.cb_size=<span class="number">0U</span>;</span><br><span class="line">attr.stack_mem=<span class="literal">NULL</span>;</span><br><span class="line">attr.stack_size=<span class="number">1024</span>*<span class="number">4</span>;</span><br><span class="line">attr.priority=<span class="number">25</span>;</span><br><span class="line"></span><br><span class="line">attr.name=Thread_1;</span><br><span class="line"><span class="keyword">if</span> (osThreadNew((osThreadFunc_t)Thread_1,<span class="literal">NULL</span>,&amp;attr)==<span class="literal">NULL</span>)&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Failed to create Theard_1!\r\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">attr.name=Thread_2;</span><br><span class="line">attr.priority = <span class="number">24</span>;   <span class="comment">//鏇存敼浼樺厛绾т负24</span></span><br><span class="line"><span class="keyword">if</span> (osThreadNew((osThreadFunc_t)Thread_2,<span class="literal">NULL</span>,&amp;attr)==<span class="literal">NULL</span>)&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Failed to create Thread_2!\r\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">attr.name=Thread_3;</span><br><span class="line">attr.stack_size=<span class="number">216</span>*<span class="number">4</span>;  <span class="comment">//鏇存敼鏍堝ぇ灏忥紝浣嗘槸涓€鑸笉鍋氭洿鏀?</span></span><br><span class="line"><span class="keyword">if</span> (osThreadNew((osThreadFunc_t)Thread_3,<span class="literal">NULL</span>,&amp;attr)==<span class="literal">NULL</span>)&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Failed to create Thread_3!\r\n&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="澶氱嚎绋嬬殑灏佽"><a href="#澶氱嚎绋嬬殑灏佽" class="headerlink" title="澶氱嚎绋嬬殑灏佽"></a>澶氱嚎绋嬬殑灏佽</h4><p>鍦ㄥ鐞嗕笟鍔＄殑鏃跺€欙紝鎴戜滑涓€鑸槸澶氱嚎绋嬬殑鑳屾櫙锛屼笅闈㈡垜灏嗗垱寤虹嚎绋嬪嚱鏁板皝瑁呰捣鏉ワ紝鏂逛究澶у鍒涘缓澶氱嚎绋?</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">osThreadId_t <span class="title function_">newThread</span><span class="params">(<span class="type">char</span> *name, osThreadFunc_t func, <span class="type">void</span> *arg)</span>&#123;</span><br><span class="line">    <span class="comment">// 瀹氫箟绾跨▼鍜屽睘鎬?</span></span><br><span class="line">    osThreadAttr_t attr = &#123;</span><br><span class="line">        name, <span class="number">0</span>, <span class="literal">NULL</span>, <span class="number">0</span>, <span class="literal">NULL</span>, <span class="number">1024</span>, osPriorityNormal, <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="comment">// 鍒涘缓绾跨▼</span></span><br><span class="line">    osThreadId_t tid = osThreadNew(func, arg, &amp;attr);</span><br><span class="line">    <span class="keyword">if</span>(tid == <span class="literal">NULL</span>)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;[newThread] osThreadNew(%s) failed.\r\n&quot;</span>, name);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> tid;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>绾跨▼閮ㄥ垎鍏堜綋浼氬埌杩欓噷锛屾兂瑕佹帰绱㈡洿杩囩嚎绋嬬浉鍏崇殑API锛岃繖閲屾彁渚涗簡API缃戠珯锛屼緵澶у鍙傝€冨涔犮€?</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://arm-software.github.io/CMSIS_5/RTOS2/html/os2MigrationFunctions.html#mig_threadMgmt">CMSIS_OS2 Thread API</a>  </li>
+<li><a target="_blank" rel="noopener" href="https://docs.openharmony.cn/pages/v4.0/zh-cn/device-dev/reference/kernel/cmsis/_c_m_s_i_s-_r_t_o_s.md/">Openharmony瀹樻柟CMSIS_API鏂囨。</a></li>
+</ol>
+<h3 id="杞欢瀹氭椂鍣"><a href="#杞欢瀹氭椂鍣" class="headerlink" title="杞欢瀹氭椂鍣?"></a>杞欢瀹氭椂鍣?</h3><h4 id="杞欢瀹氭椂鍣ㄧ殑浠嬬粛"><a href="#杞欢瀹氭椂鍣ㄧ殑浠嬬粛" class="headerlink" title="杞欢瀹氭椂鍣ㄧ殑浠嬬粛"></a>杞欢瀹氭椂鍣ㄧ殑浠嬬粛</h4><p>鈥?涓嬮潰鎴戜滑浠嬬粛杞欢瀹氭椂鍣紝鑰佹牱瀛愭垜浠厛鏉ヤ粙缁嶄互涓嬭蒋浠跺畾鏃跺櫒銆傝蒋浠跺畾鏃跺櫒鏄竴绉嶅湪杞欢灞傞潰涓婂疄鐜扮殑璁℃椂鍣ㄦ満鍒讹紝鐢ㄤ簬鍦ㄧ壒瀹氱殑鏃堕棿闂撮殧鍐呮墽琛岀壒瀹氱殑浠诲姟鎴栬Е鍙戠壒瀹氱殑浜嬩欢銆傚畠涓嶄緷璧栦簬纭欢瀹氭椂鍣紝鑰屾槸閫氳繃杞欢缂栫▼鐨勬柟寮忓疄鐜般€備妇涓€涓緥瀛愶紝鎵嬫満搴旂敤銆?</p>
+<p>鈥?褰撲綘浣跨敤鎵嬫満涓婄殑鏌愪釜搴旂敤鏃讹紝浣犲彲鑳戒細娉ㄦ剰鍒帮紝濡傛灉浣犲湪涓€娈垫椂闂村唴娌℃湁杩涜浠讳綍鎿嶄綔锛屽簲鐢ㄧ▼搴忎細鑷姩鏂紑杩炴帴骞惰姹備綘閲嶆柊鐧诲綍銆傝繖鏄负浜嗕繚鎶や綘鐨勮处鍙峰畨鍏ㄥ苟閲婃斁鏈嶅姟鍣ㄨ祫婧愩€傜被浼肩殑璁惧畾閮芥槸鏈夎蒋浠跺畾鏃跺櫒瀹炵幇鐨勶紝涓嬮潰杩涜瀹為檯鎿嶄綔锛岃澶у浣撲細涓€涓嬭蒋浠跺畾鏃跺櫒銆?</p>
+<h4 id="杞欢瀹氭椂鍣ㄤ娇鐢ㄦ祦绋"><a href="#杞欢瀹氭椂鍣ㄤ娇鐢ㄦ祦绋" class="headerlink" title="杞欢瀹氭椂鍣ㄤ娇鐢ㄦ祦绋?"></a>杞欢瀹氭椂鍣ㄤ娇鐢ㄦ祦绋?</h4><ol>
+<li><p>鏂板缓鏍蜂緥鐩綍<br> <code>applications/sample/wifi-iot/app/time_demo</code>  </p>
+</li>
+<li><p>鏂板缓婧愭枃浠跺拰gn鏂囦欢<br> <code>applications/sample/wifi-iot/app/time_demo/time.c</code><br> <code>applications/sample/wifi-iot/app/time_demo/BUILD.gn</code></p>
+</li>
+<li><p>浠嬬粛瀹氭椂鍣?</p>
+<ul>
+<li><p>濡備綍鍒涘缓杞欢瀹氭椂鍣紵</p>
+  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">osTimerId_t <span class="title function_">osTimerNew</span> <span class="params">(osTimerFunc_t func, osTimerType_t type, <span class="type">void</span> *argument, <span class="type">const</span> osTimerAttr_t *attr)</span>;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p> <code>func</code>: 杞欢瀹氭椂鍣ㄧ殑鍥炶皟鍑芥暟<br>      <code>type</code>锛氳蒋浠跺畾鏃跺櫒鐨勭绫?<br>      <code>argument</code>锛氳蒋浠跺畾鏃跺櫒鍥炶皟鍑芥暟鐨勫弬鏁?<br>      <code>attr</code>锛氳蒋浠跺畾鏃跺櫒鐨勫睘鎬?<br>      杩斿洖鍊硷細杩斿洖杞欢瀹氭椂鍣ㄧ殑id锛?id涓虹┖鍒欒鏄庤蒋浠跺畾鏃跺櫒澶辫触  </p>
+</blockquote>
+<p>  杞欢瀹氭椂鍣ㄧ殑绉嶇被鏈変袱涓紝鍒嗕负涓€娆℃€у畾鏃跺櫒鍜屽懆鏈熸€у畾鏃跺櫒锛屼竴娆℃€у湪鎵ц瀹屽洖璋冨嚱鏁板悗灏变細鍋滄璁℃暟锛岃€屽懆鏈熸€у畾鏃跺櫒浼氶噸澶嶈Е鍙戯紝姣忔瑙﹀彂閲嶆柊璁℃椂銆傛牴鎹笉鍚岀殑闇€姹傛垜浠彲浠ラ€夋嫨浣跨敤涓嶅悓鐨勮蒋浠跺畾鏃跺櫒銆傦紙涓嬮潰鏄畾鏃跺櫒鐨勭被鍨嬶級</p>
+  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">enum</span> &#123;</span></span><br><span class="line">  <span class="comment">/** One-shot timer */</span></span><br><span class="line">  osTimerOnce               = <span class="number">0</span>,  <span class="comment">//涓€娆℃€у畾鏃跺櫒</span></span><br><span class="line">  <span class="comment">/** Repeating timer */</span></span><br><span class="line">  osTimerPeriodic           = <span class="number">1</span>   <span class="comment">//鍛ㄦ湡鎬у畾鏃跺櫒</span></span><br><span class="line">&#125; osTimerType_t;</span><br></pre></td></tr></table></figure></li>
+<li><p>濡備綍鍚姩杞欢瀹氭椂鍣紵</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">osStatus_t <span class="title function_">osTimerStart</span> <span class="params">(osTimerId_t timer_id, <span class="type">uint32_t</span> ticks)</span>;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>timer_id</code>锛氳蒋浠跺畾鏃跺櫒鐨勫弬鏁帮紝鎸囧畾瑕佸惎鍔ㄥ摢涓蒋浠跺畾鏃跺櫒<br>  <code>ticks</code>锛氱瓑寰呭灏戜釜ticks鎵ц鍥炶皟鍑芥暟锛屽湪Hi3861涓?100涓猼icks涓?绉?<br>  杩斿洖鍊硷細杞欢瀹氭椂鍣ㄧ殑鐘舵€佺爜锛屽湪绾跨▼閮ㄥ垎宸茬粡灞曠ず缁欏ぇ瀹朵簡鍏ㄩ儴鐨勭姸鎬佺爜  </p>
+</blockquote>
+</li>
+<li><p>濡備綍鍋滄瀹氭椂鍣?</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">osStatus_t <span class="title function_">osTimerStop</span> <span class="params">(osTimerId_t timer_id)</span>;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>杩欎釜鍑芥暟寰堢畝鍗曪紝鍙渶瑕佷紶杞欢瀹氭椂鍣ㄧ殑id锛屽嵆鍙仠姝㈣蒋浠惰鏃跺櫒锛屽苟涓旇繑鍥炰粬鐨勭姸鎬佺爜</p>
+</blockquote>
+</li>
+<li><p>濡備綍鍒犻櫎瀹氭椂鍣紵</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">osStatus_t osTimerDelete (osTimerId_t timer_id);</span><br></pre></td></tr></table></figure></li>
+<li><p>缂栧啓婧愮爜</p>
+<ul>
+<li><code>time.c</code><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//瀵煎叆澶存枃浠?</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;cmsis_os2.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;ohos_init.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">//瀹氫箟瀹氭椂鍣ㄨЕ鍙戠殑浠诲姟鍑芥暟</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">Time1back</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;This is BearPi Timer1Callback!\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">void</span> <span class="title function_">Time2back</span> <span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;This is BearPi Timer2Callback!\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//鍦ㄨ繖閲岄潰寮€灞曞畾鏃跺櫒鐨勬祦绋?</span></span><br><span class="line"><span class="type">static</span> <span class="type">void</span> <span class="title function_">time_example_2</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    osTimerId_t ID1,ID2;   <span class="comment">//瀹氫箟瀹氭椂鍣ㄧ殑ID锛岀被浼间簬osThreadAttr_t attr;</span></span><br><span class="line">    <span class="type">uint32_t</span> timerDelay;   <span class="comment">//uint32_t == (unsigned int) 32B==4瀛楄妭</span></span><br><span class="line">    osStatus_t status;     <span class="comment">//瀹氫箟鐘舵€侀噺</span></span><br><span class="line"></span><br><span class="line">    ID1=osTimerNew(Time1back, osTimerOnce, <span class="literal">NULL</span>, <span class="literal">NULL</span>);  <span class="comment">//(浠诲姟鍑芥暟鍚嶏紝瀹氭椂鍣ㄧ被鍨嬶紝浠呴檺浜巓sTimerOnce(鍗曟瀹氭椂鍣?鎴杘sTimerPeriodic锛屽畾鏃跺櫒鍥炶皟鍑芥暟鍙傛暟锛屽畾鏃跺櫒灞炴€э紝褰撳墠涓嶆敮鎸佽鍙傛暟锛屽弬鏁板彲涓篘ULL )</span></span><br><span class="line">    <span class="keyword">if</span> (ID1 != <span class="literal">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        timerDelay=<span class="number">100U</span>; <span class="comment">//锛?00U == 1S锛?</span></span><br><span class="line"></span><br><span class="line">        status= osTimerStart(ID1,timerDelay);  </span><br><span class="line">        <span class="comment">// 瀹氭椂鍣ㄥ紑濮嬭繍琛屽嚱鏁?osOK锛岃〃绀烘墽琛屾垚鍔熴€?</span></span><br><span class="line">        <span class="comment">//  osErrorParameter锛岃〃绀哄弬鏁伴敊璇€?</span></span><br><span class="line">        <span class="comment">//  osErrorResource锛岃〃绀哄叾浠栭敊璇€?</span></span><br><span class="line">        <span class="comment">//  osErrorISR锛岃〃绀哄湪涓柇涓皟鐢ㄦ湰鍑芥暟銆?</span></span><br><span class="line">        <span class="comment">//osTimerStop,osTimerDelete涔熸槸涓€鏍枫€?</span></span><br><span class="line">        <span class="keyword">if</span> (status != osOK) &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;Failed to start Timer1!\r\n&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    osDelay(<span class="number">100U</span>);   <span class="comment">//寤惰繜1绉?</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//STOP锛堟殏鍋滃畾鏃跺櫒锛?</span></span><br><span class="line">    status = osTimerStop(ID1);  <span class="comment">//鏆傚仠瀹氭椂鍣ㄥ苟灏嗚繑鍥炲€煎瓨鍏ョ姸鎬侀噺</span></span><br><span class="line">    <span class="keyword">if</span> (status == osOK)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;the time1 is stop success\r\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;the time1 is stop failed\r\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//Delete锛堝垹闄ゅ畾鏃跺櫒锛?</span></span><br><span class="line">    status = osTimerDelete(ID1);   <span class="comment">//鍒犻櫎瀹氭椂鍣ㄥ苟灏嗚繑鍥炲€煎瓨鍏ョ姸鎬侀噺</span></span><br><span class="line">    <span class="keyword">if</span> (status == osOK)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;the time1 is delect success\r\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;the time1 is delect failed\r\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    ID2=osTimerNew(Time2back, osTimerPeriodic, <span class="literal">NULL</span>, <span class="literal">NULL</span>);</span><br><span class="line">    <span class="keyword">if</span> (ID2 != <span class="literal">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        timerDelay=<span class="number">300U</span>;</span><br><span class="line"></span><br><span class="line">        status= osTimerStart(ID2,timerDelay);</span><br><span class="line">        <span class="keyword">if</span> (status != osOK) &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;Failed to start Timer2!\r\n&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    osDelay(<span class="number">600U</span>);</span><br><span class="line">    status = osTimerStop(ID2);</span><br><span class="line">    <span class="keyword">if</span> (status == osOK)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;the time2 is stop success!\r\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;the time2 is stop failed\r\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    status = osTimerDelete(ID2);</span><br><span class="line">    <span class="keyword">if</span> (status == osOK)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;the time2 is delect success\r\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;the time2 is delect failed\r\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">APP_FEATURE_INIT(time_example_2);</span><br></pre></td></tr></table></figure></li>
+<li><code>BUILD.gn</code><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">static_library(&quot;mytime&quot;) &#123;</span><br><span class="line">    sources = [</span><br><span class="line">        &quot;time.c&quot;</span><br><span class="line">    ]</span><br><span class="line">    include_dirs = [</span><br><span class="line">        &quot;//utils/native/lite/include&quot;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>鎵ц鏁堟灉<br> <img src="/./%E9%8D%A5%E6%83%A7%E7%B0%A5/26.png" alt="Alt text"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p>杞欢瀹氭椂鍣ㄧ殑API鐩稿杈冨皯锛岃繖閲岃繕鏄彁渚涙墍鏈夌殑杞欢瀹氭椂鍣ˋPI</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://arm-software.github.io/CMSIS_5/RTOS2/html/os2MigrationFunctions.html#mig_timer">CMSIS_OS2 Timer API</a></li>
+</ol>
+<h3 id="浜掓枼閿"><a href="#浜掓枼閿" class="headerlink" title="浜掓枼閿?"></a>浜掓枼閿?</h3><p>鍦ㄥ涔犱簰鏂ラ攣涔嬪墠锛屾垜浠湁蹇呰鍘诲啀鐪嬩竴涓嬬嚎绋嬬殑鐘舵€佽繖涓€灏忚妭锛屼篃灏辨槸鎴戜滑瑕佷簡瑙ｇ嚎绋嬬殑鐢熷懡鍛ㄦ湡锛岄槻姝㈡垜浠绾跨▼鐨勭敓鍛藉懆鏈熶笉浜嗚В鑰屽浜掓枼閿佺殑瀛︿範鎰熷埌鍥伴毦銆?</p>
+<h4 id="浜掓枼閿佷粙缁"><a href="#浜掓枼閿佷粙缁" class="headerlink" title="浜掓枼閿佷粙缁?"></a>浜掓枼閿佷粙缁?</h4><p>浜掓枼閿佺殑搴旂敤鍦烘櫙鏃跺鐞嗗绾跨▼锛岃祫婧愯闂殑闂銆傝繖閲岃繕鏄粰澶у涓句竴涓緥瀛愶細鍔ㄧ墿鍥崠绁ㄣ€?</p>
+<p>鈥?鍦ㄦ垜浠殑绋嬪簭璁捐涓紝寰€寰€浼氭湁鍏辨湁璧勬簮锛屾瘡涓嚎绋嬮兘鍙互杩涙潵璁块棶杩欎簺璧勬簮銆傝繖閲岀殑鍏辨湁璧勬簮灏辨槸鎴戜滑鐨勯棬绁紝涓€涓敭绁ㄥ彛灏辨槸涓€涓嚎绋嬶紝褰撴湁浜烘潵绐楀彛涔扮エ锛屾垜浠殑闂ㄧエ灏变細鍑忓皯涓€寮犮€傚綋鐒朵竴涓姩鐗╁洯鐨勬祦閲忔椂宸ㄥぇ鐨勶紝鎴戜滑涓嶈兘鍙绔嬩竴涓敭绁ㄥ彛锛岃繖鏍风殑鏁堢巼鏄緢浣庣殑銆備含涓滄窐瀹濇姠璐鏉€涔熶竴鏍凤紝鎴戜滑蹇呴』璁剧珛澶氫釜绐楀彛锛屽湪鍚屼竴鏃跺埢涓哄涓汉澶勭悊涓氬姟銆傚绾跨▼瑙ｅ喅浜嗘晥鐜囬棶棰樹絾涔熷甫鏉ヤ簡瀹夊叏闅愭偅銆?</p>
+<p>鈥?鎴戜滑鍋囪涓€涓繖鏍风殑鍦烘櫙锛屽姩鐗╁洯浠呭墿涓€寮犻棬绁紝浣嗘槸鏈変袱涓湪涓嶅悓鐨勭獥鍙ｅ悓鏃朵粯浜嗛挶锛屽綋鍞エ鍛樹负浠栦滑鎷跨エ鐨勬椂鍊欏氨浼氬彂鐜帮紝灏戜簡涓€寮犵エ锛屼袱涓汉閮戒粯浜嗛挶閮芥兂瑕侀偅寮犵エ锛屽氨闄峰叆浜嗕竴涓灞€锛屾棤濂堝姩鐗╁洯鍙兘璁╀粬浠兘杩涘幓銆備絾鏄湪绋嬪簭涓綋鐜扮殑鍙兘灏辨槸涓€涓猙ug锛屽姩鐗╁洯鐨勯棬绁ㄥ墿浣欐暟涓猴細-1銆?</p>
+<p>鈥?鍞エ鐨勯€昏緫寰堢畝鍗曪紝鍙绁ㄦ暟澶т簬闆讹紝杩樻湁绁ㄨ兘鍗栵紝閭ｅ氨鍦ㄦ鍩虹涓婂噺鎺変竴銆傞棶棰樺氨鍦ㄤ簬锛?<em>涓や釜绾跨▼鍚屾椂鍦╟ount &#x3D; 1鐨勬椂鍊欓€氳繃浜唅f鍒ゆ柇锛岄兘鎵ц鐨刢ount鈥擄紱閭ｄ箞灏变細鍑虹幇浜哻ount &#x3D; -1锛屼篃灏辨槸绁ㄦ暟涓鸿礋 鐨刡ug缁撴灉銆?</em></p>
+<p>鈥?浜掓枼閿佺殑鍑虹幇灏卞緢濂藉湴瑙ｅ喅浜嗕竴涓棶棰橈紝浠栬兘澶熼樆姝笂闈袱涓嚎绋嬪悓鏃惰闂祫婧愮殑鍚屾琛屼负锛屼篃灏辨槸璇村綋涓€涓嚎绋嬭繘鍏ヨ繖涓猧f璇彞鍚庯紝鍒殑绾跨▼閮戒笉鑳借繘鍏ャ€傚舰璞¤捣鏉ヨ锛屽氨鍍忓杩欐浠ｇ爜鍔犱簡閿侊紝鍙湁鏈夐挜鍖欑殑绾跨▼鎵嶈兘澶熻闂畠銆?<br><img src="/./%E9%8D%A5%E6%83%A7%E7%B0%A5/23.png" alt="Alt text"><br><img src="/./%E9%8D%A5%E6%83%A7%E7%B0%A5/20.png" alt="Alt text"></p>
+<h4 id="浜掓枼閿佺殑浣跨敤娴佺▼"><a href="#浜掓枼閿佺殑浣跨敤娴佺▼" class="headerlink" title="浜掓枼閿佺殑浣跨敤娴佺▼"></a>浜掓枼閿佺殑浣跨敤娴佺▼</h4><ol>
+<li><p>鏂板缓鏍蜂緥鐩綍<br><code>applications/sample/wifi-iot/app/mutex_demo</code>  </p>
+</li>
+<li><p>鏂板缓婧愭枃浠跺拰gn鏂囦欢<br><code>applications/sample/wifi-iot/app/mutex_demo/mutex.c</code><br><code>applications/sample/wifi-iot/app/mutex_demo/BUILD.gn</code>  </p>
+</li>
+<li><p>浠嬬粛浜掓枼閿?</p>
+<ul>
+<li><p>濡備綍鍒涘缓浜掓枼閿侊紵</p>
+<blockquote>
+<p> 涓庣嚎绋嬬殑瀹氫箟涓€鏍凤紝浜掓枼閿佷篃灏佽鎴愪簡涓€涓粨鏋勪綋</p>
+</blockquote>
+ <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">  <span class="comment">/** Mutex name */</span></span><br><span class="line">  <span class="type">const</span> <span class="type">char</span>                   *name;</span><br><span class="line">  <span class="comment">/** Reserved attribute bits */</span></span><br><span class="line">  <span class="type">uint32_t</span>                 attr_bits;</span><br><span class="line">  <span class="comment">/** Memory for the mutex control block */</span></span><br><span class="line">  <span class="type">void</span>                      *cb_mem;</span><br><span class="line">  <span class="comment">/** Size of the memory for the mutex control block */</span></span><br><span class="line">  <span class="type">uint32_t</span>                   cb_size;</span><br><span class="line">&#125; osMutexAttr_t;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>name</code>锛氫簰鏂ラ攣鐨勫悕绉?<br>   <code>attr_bits</code>锛氫繚鐣欑殑灞炴€т綅<br>   <code>cb_mem</code>锛氫簰鏂ラ攣鎺у埗鍧楃殑鍐呭瓨<br>   <code>cb_size</code>锛氫簰鏂ラ攣鎺у埗鍧楀唴瀛樼殑澶у皬 </p>
+</blockquote>
+</li>
+<li><p>濡備綍鑾峰彇浜掓枼閿佺殑ID锛?</p>
+ <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">osMutexId_t <span class="title function_">osMutexNew</span><span class="params">(<span class="type">const</span> osMutexAttr_t *attr)</span>;</span><br></pre></td></tr></table></figure></li>
+<li><p>绾跨▼濡備綍鑾峰彇浜掓枼閿侊紵</p>
+ <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">osStatus_t <span class="title function_">osMutexAcquire</span><span class="params">(osMutexId_t mutex_id, <span class="type">uint32_t</span> timeout)</span>;</span><br></pre></td></tr></table></figure>
+<p> 鈥?浼犲叆浜掓枼閿乮d锛岃缃垜浠殑寤惰繜鏃堕棿锛屽綋绾跨▼鑾峰彇鍒版垜浠殑浜掓枼閿佹椂锛岃繑鍥炵殑鐘舵€佹槸osOK銆?<br>  涓嬮潰鏄叏閮ㄧ殑鐘舵€佺爜锛堟垜杩欓噷鍦ㄤ粙缁嶄竴娆★紝浠ュ厤閬楀繕锛?</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">  typedef enum &#123;</span><br><span class="line">  /** Operation completed successfully */</span><br><span class="line">  osOK                      =  0,</span><br><span class="line">  /** Unspecified error */</span><br><span class="line">  osError                   = -1,</span><br><span class="line">  /** Timeout */</span><br><span class="line">  osErrorTimeout            = -2,</span><br><span class="line">  /** Resource error */</span><br><span class="line">  osErrorResource           = -3,</span><br><span class="line">  /** Incorrect parameter */</span><br><span class="line">  osErrorParameter          = -4,</span><br><span class="line">  /** Insufficient memory */</span><br><span class="line">  osErrorNoMemory           = -5,</span><br><span class="line">  /** Service interruption */</span><br><span class="line">  osErrorISR                = -6,</span><br><span class="line">  /** Reserved. It is used to prevent the compiler from optimizing enumerations. */</span><br><span class="line">  osStatusReserved          = 0x7FFFFFFF</span><br><span class="line">&#125; osStatus_t;</span><br></pre></td></tr></table></figure></li>
+<li><p>濡備綍閲婃斁浜掓枼閿侊紵</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">osStatus_t <span class="title function_">osMutexRelease</span><span class="params">(osMutexId_t mutex_id)</span>;</span><br></pre></td></tr></table></figure>
+<p>鈥?褰撴垜浠殑绾跨▼鎵ц瀹屼笟鍔″悗闇€瑕佹妸閿侀噴鏀惧嚭鏉ワ紝璁╁埆鐨勭嚎绋嬭幏鍙栭攣锛屾墽琛屼笟鍔°€傚綋鐒惰繖涓繃绋嬫槸绾跨▼涔嬮棿鐨勭珵浜夛紝涓€涓嚎绋嬪彲鑳戒竴鐩村緱涓嶅埌閿侊紝涓€涓嚎绋嬩篃鍙兘鍒氶噴鏀鹃攣鍙堣幏寰楅攣锛屾垜浠彲浠ユ坊鍔犱紤鐪犳搷浣滐紝鎻愰珮閿佸湪鍚勪釜绾跨▼闂寸殑鍒嗛厤銆?<br>鍏朵粬API璇峰弬鑰冿細<a target="_blank" rel="noopener" href="https://arm-software.github.io/CMSIS_5/RTOS2/html/os2MigrationFunctions.html#mig_mutex">Mutex API</a></p>
+</li>
+</ul>
+</li>
+<li><p>缂栧啓婧愮爜</p>
+<ul>
+<li><code>mutex.c</code><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*  瀹炵幇鏁堟灉</span></span><br><span class="line"><span class="comment">鏁翠綋瀹炵幇鐨勬晥鏋滄槸楂樹紭鍏堢骇浠诲姟涓庝綆浼樺厛绾т换鍔℃姠鍗犱簰鏂ラ攣璧勬簮锛岄鍏堝洜涓洪珮浼樺厛绾у拰涓紭鍏堢骇閮藉欢杩?</span></span><br><span class="line"><span class="comment">浜?绉掞紝鎵€浠ヤ綆浼樺厛绾т换鍔＄涓€涓墽琛岋紝鍦ㄤ綆浼樺厛绾ф墽琛屼簡1绉掞紝涓紭鍏堢骇鎵ц锛?绉掓墦鍗颁竴娆★級锛岄珮浼?</span></span><br><span class="line"><span class="comment">鍏堢骇鍥犱负浣庝紭鍏堢骇鍗犳嵁浜掓枼閿佽祫婧愯€屾棤娉曞惎鍔紝鍦ㄤ綆浼樺厛绾у啀鎵ц2绉掞紙鍏?绉掞級鍚庨噴鏀句簰鏂ラ攣璧勬簮锛?</span></span><br><span class="line"><span class="comment">楂樹紭鍏堢骇寰楀埌璧勬簮寮€濮嬫墽琛岋紝鏈熼棿涓紭鍏堢骇涓€鐩存墽琛屾墦鍗帮紝楂樹紭鍏堢骇涓庝綆浼樺厛绾?绉掍氦鏇挎墦鍗?</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;cmsis_os2.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;ohos_init.h&quot;</span></span></span><br><span class="line"></span><br><span class="line">osMutexId_t muxe_id;     <span class="comment">//鍒涘缓浜掓枼閿両D</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//鍒涘缓楂樹紭鍏堢骇绾跨▼鐨勫洖璋冨嚱鏁?</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">HIGH_Thread</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    osDelay(<span class="number">100U</span>);</span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">        osMutexAcquire(muxe_id,osWaitForever);  <span class="comment">//鑾峰彇浜掓枼閿佽祫婧?</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;HIGH_Thread is running!\r\n&quot;</span>);</span><br><span class="line">        osDelay(<span class="number">300U</span>);</span><br><span class="line">        osMutexRelease(muxe_id);   <span class="comment">//閲婃斁浜掓枼閿佽祫婧?</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//鍒涘缓涓紭鍏堢骇绾跨▼鐨勫洖璋冨嚱鏁?</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">MID_Thread</span><span class="params">(vboid)</span></span><br><span class="line">&#123;</span><br><span class="line">    osDelay(<span class="number">100U</span>);</span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;MID_Thread is running!\r\n&quot;</span>);</span><br><span class="line">        osDelay(<span class="number">100U</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//鍒涘缓浣庝紭鍏堢骇绾跨▼鐨勫洖璋冨嚱鏁?</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">LOW_Thread</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">        osMutexAcquire(muxe_id,osWaitForever);  <span class="comment">//鑾峰彇浜掓枼閿佽祫婧?</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;LOW_Thread is running!\r\n&quot;</span>);</span><br><span class="line">        osDelay(<span class="number">300U</span>);</span><br><span class="line">        osMutexRelease(muxe_id);   <span class="comment">//閲婃斁浜掓枼閿佽祫婧?</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">static</span> <span class="type">void</span> <span class="title function_">muxe_example</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 鍒涘缓浜掓枼閿侊紝浜掓枼閿佺殑attr缁撴瀯浣撳彲浠ヤ负NULL锛堟棤锛?</span></span><br><span class="line">    muxe_id=osMutexNew(<span class="literal">NULL</span>);  <span class="comment">//鑾峰彇浜掓枼閿佺殑ID</span></span><br><span class="line">    <span class="keyword">if</span> (muxe_id == <span class="literal">NULL</span>)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Failed to create Muxe!\r\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    osThreadAttr_t attr;</span><br><span class="line">    attr.attr_bits=<span class="number">0U</span>;</span><br><span class="line">    attr.cb_mem=<span class="literal">NULL</span>;</span><br><span class="line">    attr.cb_size=<span class="number">0U</span>;</span><br><span class="line">    attr.stack_mem=<span class="literal">NULL</span>;</span><br><span class="line">    attr.stack_size=<span class="number">1024</span>*<span class="number">4</span>;</span><br><span class="line"></span><br><span class="line">    attr.name = <span class="string">&quot;Thread_1&quot;</span>;</span><br><span class="line">    attr.priority = <span class="number">24</span>;     <span class="comment">//楂樹紭鍏堢骇</span></span><br><span class="line">    <span class="keyword">if</span> (osThreadNew((osThreadFunc_t)HIGH_Thread,<span class="literal">NULL</span>,&amp;attr) == <span class="literal">NULL</span>)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Failed to create Thread_1!\r\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    attr.name = <span class="string">&quot;Thread_2&quot;</span>;  <span class="comment">//涓紭鍏堢骇</span></span><br><span class="line">    attr.priority = <span class="number">25</span>;</span><br><span class="line">    <span class="keyword">if</span> (osThreadNew((osThreadFunc_t)MID_Thread,<span class="literal">NULL</span>,&amp;attr) == <span class="literal">NULL</span>)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Failed to create Thread_2!\r\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    attr.name = <span class="string">&quot;Thread_3&quot;</span>;</span><br><span class="line">    attr.priority = <span class="number">26</span>;  <span class="comment">//浣庝紭鍏堢骇</span></span><br><span class="line">    <span class="keyword">if</span> (osThreadNew((osThreadFunc_t)LOW_Thread,<span class="literal">NULL</span>,&amp;attr) == <span class="literal">NULL</span>)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Failed to create Thread_3!\r\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">APP_FEATURE_INIT(muxe_example);</span><br></pre></td></tr></table></figure></li>
+<li><code>BUILD.gn</code><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">static_library(&quot;mymuxe&quot;) &#123;</span><br><span class="line">    sources = [</span><br><span class="line">        &quot;muxe_example.c&quot;</span><br><span class="line">    ]</span><br><span class="line">    include_dirs = [</span><br><span class="line">        &quot;//utils/native/lite/include&quot;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>鎵ц鏁堟灉<blockquote>
+<p>浠ｇ爜缂栬瘧鐑у綍浠ｇ爜鍚庯紝鎸変笅寮€鍙戞澘鐨凴ESET鎸夐敭锛岄€氳繃涓插彛鍔╂墜鏌ョ湅鏃ュ織锛屼腑浼樺厛绾т换鍔′竴鐩存甯歌繍琛岋紝鑰岄珮浼樺厛绾у拰浣庝紭鍏堢骇鐨勪换鍔″洜涓轰簰鐩告姠鍗犱簰鏂ラ攣锛屼氦鏇胯繍琛屻€?</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">LowPrioThread is runing.</span><br><span class="line">MidPrioThread is runing.</span><br><span class="line">MidPrioThread is runing.</span><br><span class="line">MidPrioThread is runing.</span><br><span class="line">HighPrioThread is runing.</span><br><span class="line">MidPrioThread is runing.</span><br><span class="line">MidPrioThread is runing.</span><br><span class="line">MidPrioThread is runing.</span><br><span class="line">LowPrioThread is runing.</span><br><span class="line">MidPrioThread is runing.</span><br><span class="line">MidPrioThread is runing.</span><br><span class="line">MidPrioThread is runing.</span><br><span class="line">HighPrioThread is runing.</span><br><span class="line">MidPrioThread is runing.</span><br><span class="line">MidPrioThread is runing.</span><br><span class="line">MidPrioThread is runing</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ol>
+<h4 id="浜掓枼閿佹渚嬩綋楠"><a href="#浜掓枼閿佹渚嬩綋楠" class="headerlink" title="浜掓枼閿佹渚嬩綋楠?"></a>浜掓枼閿佹渚嬩綋楠?</h4><p>鎴戣繖閲岀矘璐翠竴涓浆鍐欑殑浠ｇ爜锛屽ぇ瀹跺彲浠ュ涔犲€熼壌涓€涓嬶紒</p>
+<ul>
+<li><p><code>mutex_zoor.c</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;ohos_init.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;cmsis_os2.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 妯℃嫙鍔ㄧ墿鍥棬绁ㄦ暟</span></span><br><span class="line"><span class="type">static</span> <span class="type">int</span> count = <span class="number">100</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 鍞エ涓氬姟绾跨▼</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">outThread</span><span class="params">(<span class="type">void</span> *args)</span>&#123;</span><br><span class="line">    <span class="comment">// 鑾峰彇浜掓枼閿?</span></span><br><span class="line">    osMutexId_t *mid = (osMutexId_t *)args;</span><br><span class="line">    <span class="comment">// 姣忎釜绾跨▼閮藉湪涓嶅仠鍦颁拱绁?</span></span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">        <span class="comment">// 鑾峰彇閿侊紝杩涘叆涓氬姟娴佺▼</span></span><br><span class="line">        <span class="keyword">if</span>(osMutexAcquire(*mid, <span class="number">100</span>) == osOK)&#123;</span><br><span class="line">            <span class="keyword">if</span>(count &gt; <span class="number">0</span>)&#123;</span><br><span class="line">                count--;</span><br><span class="line">                <span class="comment">// 璁剧疆鎻愮ず淇℃伅</span></span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;[Mutex Test] Thread %s get a value, the less is %d.\r\n&quot;</span>, osThreadGetName(osThreadGetId()), count);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="comment">// 鍛婄煡杩欎簺绾跨▼宸茬粡娌℃湁闂ㄧエ鍗栦簡锛岀嚎绋嬬粨鏉?</span></span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;[Mutex Test] The value is out!\r\n&quot;</span>);</span><br><span class="line">                osThreadTerminate(osThreadGetId());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 閲婃斁閿?</span></span><br><span class="line">        osMutexRelease(*mid);</span><br><span class="line"></span><br><span class="line">        osDelay(<span class="number">5</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 鍒涘缓绾跨▼灏佽</span></span><br><span class="line">osThreadId_t <span class="title function_">createThreads</span><span class="params">(<span class="type">char</span> *name, osThreadFunc_t func, <span class="type">void</span> *args)</span>&#123;</span><br><span class="line">    osThreadAttr_t attr = &#123;</span><br><span class="line">        name, <span class="number">0</span>, <span class="literal">NULL</span>, <span class="number">0</span>, <span class="literal">NULL</span>, <span class="number">1024</span>, osPriorityNormal, <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">    &#125;;</span><br><span class="line">    osThreadId_t tid = osThreadNew(func, args, &amp;attr);</span><br><span class="line">    <span class="keyword">return</span> tid;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 涓诲嚱鏁板疄鐜板绾跨▼鐨勫垱寤猴紝鎵ц涔扮エ涓氬姟</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">mutexMain</span><span class="params">(<span class="type">void</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 鍒涘缓浜掓枼閿?</span></span><br><span class="line">    osMutexAttr_t attr = &#123;<span class="number">0</span>&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 鑾峰彇浜掓枼閿佺殑id</span></span><br><span class="line">    osMutexId_t mid = osMutexNew(&amp;attr);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(mid == <span class="literal">NULL</span>)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;[Mutex Test] Failed to create a mutex!\r\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 鍒涘缓澶氱嚎绋?</span></span><br><span class="line">    osThreadId_t tid1 = createThreads(<span class="string">&quot;Thread_1&quot;</span>, (osThreadFunc_t)outThread, &amp;mid);</span><br><span class="line">    osThreadId_t tid2 = createThreads(<span class="string">&quot;Thread_2&quot;</span>, (osThreadFunc_t)outThread, &amp;mid);</span><br><span class="line">    osThreadId_t tid3 = createThreads(<span class="string">&quot;Thread_3&quot;</span>, (osThreadFunc_t)outThread, &amp;mid);</span><br><span class="line"></span><br><span class="line">    osDelay(<span class="number">1000</span>);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 娴嬭瘯绾跨▼</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">MainTest</span><span class="params">(<span class="type">void</span>)</span>&#123;</span><br><span class="line">    osThreadId_t tid = createThreads(<span class="string">&quot;MainTest&quot;</span>, (osThreadFunc_t)mutexMain, <span class="literal">NULL</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">APP_FEATURE_INIT(MainTest);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>缁撴灉灞曠ず<br><img src="/./%E9%8D%A5%E6%83%A7%E7%B0%A5/21.png" alt="Alt text"></li>
+</ul>
+</li>
+<li><p>鍙兘鏈夌殑浼欎即浠湅鍒拌繖閲屼笉澶竻鏅帮紝浼氳寰楄繖娈典唬鐮佺湡鐨勪笂閿佷簡鍚?涓嬮潰杩欎竴娈典唬鐮?</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(osMutexAcquire(*mid, <span class="number">100</span>) == osOK)&#123;</span><br><span class="line">         <span class="keyword">if</span>(count &gt; <span class="number">0</span>)&#123;</span><br><span class="line">             count--;</span><br><span class="line">             <span class="built_in">printf</span>(<span class="string">&quot;[Mutex Test] Thread %s get a value, the less is %d.\r\n&quot;</span>, osThreadGetName(osThreadGetId()), count);</span><br><span class="line">         &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">             <span class="built_in">printf</span>(<span class="string">&quot;[Mutex Test] The value is out!\r\n&quot;</span>);</span><br><span class="line">             osThreadTerminate(osThreadGetId());</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>閭ｄ箞鎴戜滑鍙互涓嶄娇鐢ㄤ簰鏂ラ攣鍐嶆鎵ц杩欐浠ｇ爜</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">      <span class="comment">// 鑾峰彇閿侊紝杩涘叆涓氬姟娴佺▼</span></span><br><span class="line">      <span class="comment">// if(osMutexAcquire(*mid, 100) == osOK)&#123;</span></span><br><span class="line">          <span class="keyword">if</span>(count &gt; <span class="number">0</span>)&#123;</span><br><span class="line">              count--;</span><br><span class="line">              <span class="built_in">printf</span>(<span class="string">&quot;[Mutex Test] Thread %s get a value, the less is %d.\r\n&quot;</span>, osThreadGetName(osThreadGetId()), count);</span><br><span class="line">          &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">              <span class="built_in">printf</span>(<span class="string">&quot;[Mutex Test] The value is out!\r\n&quot;</span>);</span><br><span class="line">              osThreadTerminate(osThreadGetId());</span><br><span class="line">          &#125;</span><br><span class="line">      <span class="comment">//&#125;</span></span><br><span class="line">      <span class="comment">// 閲婃斁閿?</span></span><br><span class="line">      <span class="comment">//osMutexRelease(*mid);</span></span><br><span class="line">      <span class="comment">//osDelay(5);</span></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>缁撴灉灞曠ず<br><img src="/./%E9%8D%A5%E6%83%A7%E7%B0%A5/22.png" alt="Alt text"></li>
+</ul>
+</li>
+</ul>
+<h3 id="淇″彿閲"><a href="#淇″彿閲" class="headerlink" title="淇″彿閲?"></a>淇″彿閲?</h3><h4 id="淇″彿閲忎粙缁"><a href="#淇″彿閲忎粙缁" class="headerlink" title="淇″彿閲忎粙缁?"></a>淇″彿閲忎粙缁?</h4><p>鈥?瀵瑰ぇ閮ㄥ垎鍒濆鑰呰€岃█锛岃繖鍙堟槸涓€涓柊鍚嶈瘝锛屼粈涔堟槸淇″彿閲忥紵鍏跺疄浠栬窡鎴戜滑涓婄瘒浠嬬粛鐨勪簰鏂ラ攣寰堝儚銆備簰鏂ラ攣鏄湪澶氱嚎绋嬩腑鍏佽涓€涓嚎绋嬭闂祫婧愶紝淇″彿閲忔槸鍦ㄥ绾跨▼涓厑璁稿涓嚎绋嬭闂祫婧愩€?<br><img src="/./%E9%8D%A5%E6%83%A7%E7%B0%A5/24.png" alt="Alt text"></p>
+<p>鈥?鍒濆鑰呬竴瀹氫細鎰熷埌鍥版儜锛屼负浜嗚В鍐冲绾跨▼璁块棶璧勬簮鐨勯闄╂垜浠檺鍒跺彧鑳芥湁涓€涓嚎绋嬪湪鏌愪竴鏃跺埢璁块棶璧勬簮锛岀幇鍦ㄨ繖涓俊鍙烽噺鎬庝箞鏈夊厑璁稿涓嚎绋嬭闂祫婧愬憿銆傜瑪鑰呭垰寮€濮嬩篃姣旇緝鍥版儜锛岀粨鍚堜竴浜涙渚嬬悊瑙ｅ悗锛屼篃鏄槑鐧戒簡杩欐牱鐨勮璁″垵琛枫€傚疄闄呬笂锛屼俊鍙烽噺锛屼簰鏂ラ攣鏈氨鏄袱绉嶄笉鍚岀殑澶氬舰鎴愬悓姝ヨ繍琛屾満鍒讹紝鍦ㄧ壒瀹氱殑搴旂敤鍦烘櫙涓嬶紝鏈夌壒瀹氱殑闇€姹傦紝鑰屼俊鍙烽噺锛屼簰鏂ラ攣鍙互婊¤冻涓嶅悓鐨勯渶姹傦紝鍏蜂綋鏄粈涔堥渶姹傚憿锛屼妇涓緥瀛愮粰澶у銆?</p>
+<p>鈥?鍗栫エ锛屾垜浠殑纭渶瑕佷簰鏂ラ攣瑙ｅ喅澶氱嚎绋嬪彲鑳藉甫鏉ョ殑閿欒锛岄偅涔堝鏋滄槸楠岀エ鍛紝涓轰簡鎻愰珮鏁堢巼锛屾垜浠紑璁惧涓叆鍙ｅ悓鏃堕獙绁ㄤ笖涓嶄細鍙戠敓鍐茬獊锛屼俊鍙烽噺灏卞仛鍒颁簡闄愬埗绾跨▼鏁伴噺璁块棶璧勬簮鐨勪綔鐢ㄣ€傚鏋滄垜浠笉闄愬埗骞跺彂鐨勬暟閲忥紝鎴戜滑鐨勭▼搴忓崰鐢ㄨ祫婧愬彲鑳戒細闈炲父澶э紝鐢氳嚦宕╂簝锛屽氨鍍忔绁ㄧ殑鍏ュ彛娌℃湁琚槑纭叆鍙ｆ暟閲忎竴鏍凤紝闂ㄥ彛鐨勪汉浠細涔辨垚涓€鐗囥€?</p>
+<h4 id="淇″彿閲忕殑浣跨敤娴佺▼"><a href="#淇″彿閲忕殑浣跨敤娴佺▼" class="headerlink" title="淇″彿閲忕殑浣跨敤娴佺▼"></a>淇″彿閲忕殑浣跨敤娴佺▼</h4><ol>
+<li><p>鏂板缓鏍蜂緥鐩綍<br>  <code>applications/sample/wifi-iot/app/semaphore_demo</code>  </p>
+</li>
+<li><p>鏂板缓婧愭枃浠跺拰gn鏂囦欢<br>  <code>applications/sample/wifi-iot/app/semaphore_demo/semaphore.c</code><br>  <code>applications/sample/wifi-iot/app/semaphore_demo/BUILD.gn</code></p>
+</li>
+<li><p>浠嬬粛淇″彿閲?</p>
+<ul>
+<li><p>濡備綍鍒涘缓淇″彿閲忥紵</p>
+<ul>
+<li>鎴戜滑鍥為【涓€涓嬪湪鍒涘缓浜掓枼閿佺殑鏃跺€欎細鏈塈D杩欐牱涓€涓娉曪紝閭ｄ箞淇″彿閲忎篃鏄姝ゃ€?</li>
+<li>鍏堝垱寤篒D<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">osSemaphoreId_t <span class="title function_">osSemaphoreNew</span><span class="params">(<span class="type">uint32_t</span> max_count, <span class="type">uint32_t</span> initial_count, <span class="type">const</span> osSemaphoreAttr_t *attr)</span>;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>max_count</code>锛氭渶澶у閲忛噺锛屾垜浠殑璧勬簮鏈€澶ц兘琚灏戠嚎绋嬭闂?<br>  <code>initial_count</code>锛氬垵濮嬪绾抽噺锛屾垜浠綋鍓嶅疄闄呰兘鏈夊灏戠嚎绋嬭闂祫婧愶紝鍥犱负涓€涓俊鍙峰搴斾竴涓嚎绋嬬殑璁稿彲銆?<br>  <code>attr</code>锛氫俊鍙烽噺灞炴€э紝涓€鑸～NULL<br>  杩斿洖鍊硷細淇″彿閲忕殑id  </p>
+</blockquote>
+</li>
+<li>鑾峰彇淇″彿閲?<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">osStatus_t osSemaphoreAcquire(osSemaphoreId_t semaphore_id, uint32_t timeout);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>semaphore_id</code>锛氫俊鍙烽噺鐨刬d<br>   <code>timeout</code>锛氱瓑寰呮椂闀匡紝鎴戜滑寰€寰€浼氬湪timoeout澶勮缃负 oswaitForever<br>   杩斿洖鍊硷細淇″彿閲忕殑鐘舵€? </p>
+</blockquote>
+</li>
+<li>閲婃斁淇″彿閲?<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">osStatus_t <span class="title function_">osSemaphoreRelease</span><span class="params">(osSemaphoreId_t semaphore_id)</span>;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>寰堢畝鍗曪紝浼犲叆淇″彿閲忕殑id锛屽氨鍙互閲婃斁涓€涓俊鍙烽噺鍑烘潵銆?</p>
+</blockquote>
+</li>
+</ul>
+<p> 鍏朵粬鐨凙PI璇峰弬鑰冿細<a target="_blank" rel="noopener" href="https://arm-software.github.io/CMSIS_5/RTOS2/html/os2MigrationFunctions.html#mig_sem">Semaphore API</a></p>
+</li>
+</ul>
+</li>
+<li><p>缂栧啓婧愮爜</p>
+<ul>
+<li><code>semaphore.c</code><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;cmsis_os2.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;ohos_init.h&quot;</span></span></span><br><span class="line"></span><br><span class="line">osSemaphoreId_t ID;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">Thread_1</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">      <span class="comment">//閲婃斁涓ゆID淇″彿閲忥紝浣垮緱Thread_2鍜孴hread_3鑳藉悓姝ユ墽琛?</span></span><br><span class="line">      <span class="comment">//姝ゅ鑻ュ彧閲婃斁涓€娆′俊鍙烽噺锛屽垯Thread_2鍜孴hread_3浼氫氦鏇胯繍琛?</span></span><br><span class="line">        osSemaphoreRelease(ID);</span><br><span class="line">        osSemaphoreRelease(ID);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Release success!\r\n&quot;</span>);</span><br><span class="line">        osDelay(<span class="number">100</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"><span class="type">void</span> <span class="title function_">Thread_2</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">      </span><br><span class="line">        <span class="comment">//鐢宠ID淇″彿閲?</span></span><br><span class="line">        osSemaphoreAcquire(ID,osWaitForever);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Thread_2 Acquire success!\r\n&quot;</span>);</span><br><span class="line">        osDelay(<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">void</span> <span class="title function_">Thread_3</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">        <span class="comment">//鐢宠ID淇″彿閲?</span></span><br><span class="line">        osSemaphoreAcquire(ID,osWaitForever);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Thread_3 Acquire success!\r\n&quot;</span>);</span><br><span class="line">        osDelay(<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">void</span> <span class="title function_">semphore</span> <span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    osThreadAttr_t attr;</span><br><span class="line">    attr.attr_bits=<span class="number">0U</span>;</span><br><span class="line">    attr.cb_mem=<span class="literal">NULL</span>;</span><br><span class="line">    attr.cb_size=<span class="number">0U</span>;</span><br><span class="line">    attr.stack_mem=<span class="literal">NULL</span>;</span><br><span class="line">    attr.stack_size=<span class="number">1024</span>*<span class="number">4</span>;</span><br><span class="line">    attr.priority=<span class="number">25</span>;</span><br><span class="line"></span><br><span class="line">    attr.name=Thread_1;</span><br><span class="line">    <span class="keyword">if</span> (osThreadNew((osThreadFunc_t)Thread_1,<span class="literal">NULL</span>,&amp;attr)==<span class="literal">NULL</span>)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Failed to create Theard_1!\r\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    attr.name=Thread_2;</span><br><span class="line">    <span class="keyword">if</span> (osThreadNew((osThreadFunc_t)Thread_2,<span class="literal">NULL</span>,&amp;attr)==<span class="literal">NULL</span>)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Failed to create Thread_2!\r\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    attr.name=Thread_3;</span><br><span class="line">    <span class="keyword">if</span> (osThreadNew((osThreadFunc_t)Thread_3,<span class="literal">NULL</span>,&amp;attr)==<span class="literal">NULL</span>)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Failed to create Thread_3!\r\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ID=osSemaphoreNew(<span class="number">4</span>,<span class="number">0</span>,<span class="literal">NULL</span>);</span><br><span class="line">    <span class="keyword">if</span> (ID == <span class="literal">NULL</span>)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Failed to create ID!\r\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">APP_FEATURE_INIT(semphore);</span><br></pre></td></tr></table></figure></li>
+<li><code>BUILD.gn</code><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">static_library(&quot;mysemaphore_2&quot;) &#123;</span><br><span class="line">    sources = [</span><br><span class="line">        &quot;semaphore_2.c&quot;</span><br><span class="line">    ]</span><br><span class="line">    include_dirs = [</span><br><span class="line">        &quot;//utils/native/lite/include&quot;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>鎵ц鏁堟灉<br><img src="/./%E9%8D%A5%E6%83%A7%E7%B0%A5/25.png" alt="Alt text"></li>
+</ul>
+</li>
+</ol>
+<h3 id="娑堟伅闃熷垪"><a href="#娑堟伅闃熷垪" class="headerlink" title="娑堟伅闃熷垪"></a>娑堟伅闃熷垪</h3><h4 id="娑堟伅闃熷垪浠嬬粛"><a href="#娑堟伅闃熷垪浠嬬粛" class="headerlink" title="娑堟伅闃熷垪浠嬬粛"></a>娑堟伅闃熷垪浠嬬粛</h4><h4 id="娑堟伅闃熷垪浣跨敤娴佺▼"><a href="#娑堟伅闃熷垪浣跨敤娴佺▼" class="headerlink" title="娑堟伅闃熷垪浣跨敤娴佺▼"></a>娑堟伅闃熷垪浣跨敤娴佺▼</h4><h3 id="璇存槑"><a href="#璇存槑" class="headerlink" title="璇存槑"></a>璇存槑</h3><p>鐩墠姝ｅ湪鏇存柊Hi3861鐨勮祫鏂</p>
+
+    </div>
+    <footer class="article-footer">
+        <a class="article-category-link" href="/categories/%E7%A1%AC%E4%BB%B6%E5%AD%A6%E4%B9%A0/" title="硬件学习" data-aos="zoom-in">硬件学习</a>
+
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/Hi3861/" rel="tag" title="Hi3861">Hi3861</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/OpenHarmony/" rel="tag" title="OpenHarmony">OpenHarmony</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" rel="tag" title="嵌入式">嵌入式</a></li></ul>
+
+    </footer>
+  </div>
+    <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
+    <div class="article-nav-link-wrap right">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="Hello World" class="lazyload">
+      <a href="/2026/01/22/hello-world/" aria-label="后一篇: Hello World"  title="后一篇: Hello World"></a>
+      <div class="article-nav-caption">后一篇</div>
+      <h3 class="article-nav-title">
+          Hello World
+      </h3>
+    </div>
+  </nav>
+
+</article>
+
+
+</section>
+        </div>
+        <footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    <div>
+      <span class="icon-copyright"></span>
+        2020-2026
+        <span class="footer-info-sep rotate"></span>
+      Ryanzhang66
+    </div>
+      <div>
+        基于&nbsp;<a href="https://hexo.io/" rel="noopener nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+      <div>
+        <span class="icon-brush"></span>
+        17.3k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        01:10
+      </div>
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">总访问量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">总访客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+  </div>
+</footer>
+
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap">
+        <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BA%AD%EE%83%BF%E6%AC%A2%E7%80%9B%EF%B8%BF%E7%AF%84%E6%B5%A0%E6%92%B3%E7%B0%B1"><span class="toc-number">1.</span> <span class="toc-text">纭欢瀛︿範浠撳簱</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%8D%93%E5%B6%88%E2%96%88"><span class="toc-number">1.1.</span> <span class="toc-text">鍓嶈█</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hi3861%E9%90%A8%E5%8B%AB%EE%84%9F%E6%B6%94%E7%8B%85%E7%B4%99OpenHarmony%E9%8D%97%E6%A5%80%E6%82%9C%E5%AF%AE%E2%82%AC%E9%8D%99%E6%88%AF%E7%B4%9A"><span class="toc-number">1.2.</span> <span class="toc-text">Hi3861鐨勫涔狅紙OpenHarmony鍗楀悜寮€鍙戯級</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#windows%E6%B6%93%E5%AC%AC%E6%AE%91DevEco-Device-Tool%E5%AF%AE%E2%82%AC%E9%8D%99%E6%88%A0%E5%B9%86%E6%BE%A7%E5%86%A9%E6%83%8C%E5%AF%A4"><span class="toc-number">1.2.1.</span> <span class="toc-text">windows涓嬬殑DevEco Device Tool寮€鍙戠幆澧冩惌寤?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%8D%92%E6%B6%98%E7%BC%93%E5%AE%B8%E3%83%A7%E2%96%BC%E9%AA%9E%E6%83%B0%E5%B9%8F%E9%8D%99%E6%A0%A8%E7%B0%AE%E9%90%AE"><span class="toc-number">1.2.2.</span> <span class="toc-text">鍒涘缓宸ョ▼骞惰幏鍙栨簮鐮?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%84%E5%8B%B6%E7%B4%B0%E7%80%B5%E7%85%8E%E5%8F%86SDK%E9%8D%9C%E5%B2%80%E7%B4%AA%E7%92%87%E6%88%9D%E4%BC%90%E9%8D%8F%E5%B3%B0%E5%AF%98"><span class="toc-number">1.2.3.</span> <span class="toc-text">闄勶細瀵煎叆SDK鍜岀紪璇戝伐鍏峰寘</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A5%A0%E5%B2%83%E7%98%89%E9%90%9C%EE%88%9A%EE%95%A8"><span class="toc-number">1.2.4.</span> <span class="toc-text">楠岃瘉鐜</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B9%87%EE%82%A6%E2%82%AC%E7%86%B7%E5%8F%86%E9%97%82"><span class="toc-number">1.3.</span> <span class="toc-text">蹇€熷叆闂?</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%AD%EE%86%BC%E7%95%BE%E9%90%A9%EE%86%BC%E7%B6%8D%E7%BC%81%E6%92%B4%E7%80%AF"><span class="toc-number">1.3.1.</span> <span class="toc-text">纭畾鐩綍缁撴瀯</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%82%E6%A0%A7%E5%95%93%E6%B6%93%E6%B0%AC%E5%A7%9F%E6%B5%A0g%E7%88%9C"><span class="toc-number">1.3.2.</span> <span class="toc-text">缂栧啓涓氬姟浠ｇ爜</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A8%A3%E8%AF%B2%E5%A7%9E%E9%8F%82%E6%89%AE%E7%B2%8D%E6%B5%A0"><span class="toc-number">1.3.3.</span> <span class="toc-text">娣诲姞鏂扮粍浠?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%87%EE%86%BD%E6%95%BC%E9%8D%97%E6%9B%9F%E6%BE%98%E9%96%B0%E5%B6%87%E7%96%86%E9%8F%82%E5%9B%A6%E6%AC%A2"><span class="toc-number">1.3.4.</span> <span class="toc-text">淇敼鍗曟澘閰嶇疆鏂囦欢</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%82%E6%A0%AC%E7%98%A7"><span class="toc-number">1.3.5.</span> <span class="toc-text">缂栬瘧</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%90%91%D1%83%E7%B6%8D"><span class="toc-number">1.3.6.</span> <span class="toc-text">鐑у綍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B6%93%E6%8F%92%E5%BD%9B%E9%8F%8C%E3%83%A7%E6%B9%85"><span class="toc-number">1.3.7.</span> <span class="toc-text">涓插彛鏌ョ湅</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hi3861%E9%90%A8%E5%8B%AD%E7%95%9D%E9%8D%97%E6%9B%A0%E7%B4%AA%E7%92%87%E6%88%9E%E7%A5%A6%E7%BB%8B%E5%AC%AD%EE%87%A9%E9%8F%84"><span class="toc-number">1.4.</span> <span class="toc-text">Hi3861鐨勭畝鍗曠紪璇戞祦绋嬭鏄?</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%8F%8B%E5%8B%AB%E7%BC%93%E7%BB%AF%E8%8D%A4%E7%B2%BA"><span class="toc-number">1.4.1.</span> <span class="toc-text">鏋勫缓绯荤粺</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%8F%81%E7%BF%A0%E7%B6%8B%E7%BC%82%E6%A0%AC%E7%98%A7%E5%A8%B4%E4%BD%BA%E2%96%BC"><span class="toc-number">1.4.2.</span> <span class="toc-text">鏁翠綋缂栬瘧娴佺▼</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%81%E5%8B%AA%E6%AC%A2%E9%90%A8%E5%8B%AB%E7%95%BE%E6%B6%94"><span class="toc-number">1.4.3.</span> <span class="toc-text">缁勪欢鐨勫畾涔?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%AE%E2%82%AC%E9%8D%99%E6%88%A6%E6%B8%B6%E7%91%95%E4%BD%B9%E5%B8%89%E9%8E%BB%EF%BC%84%E6%AE%91%E7%BC%82%E6%A0%AC%E7%98%A7%E9%8F%82%E5%9B%A6%E6%AC%A2%E9%8D%90%E5%91%AD%EE%86%90"><span class="toc-number">1.4.4.</span> <span class="toc-text">寮€鍙戦渶瑕佹帉鎻＄殑缂栬瘧鏂囦欢鍐呭</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%84%E5%8B%B6%E7%B4%B0BUILD-gn%E9%8D%92%E5%97%98%E7%80%BD%E9%94%9B%E5%A0%9F%E6%B9%AD%E7%80%B9%E5%B1%BE%E5%9E%9A%E5%AF%B0%E5%91%AF%E7%94%BB%E9%94%9B"><span class="toc-number">1.4.5.</span> <span class="toc-text">闄勶細BUILD.gn鍒嗘瀽锛堟湭瀹屾垚寰呯画锛?</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hi3861%E9%90%A8%E5%8B%AB%E7%86%80%E7%BA%AD%E2%82%AC%E9%8D%90%E5%91%AE%E7%89%B3%E5%AF%AE%E2%82%AC%E9%8D%99"><span class="toc-number">1.5.</span> <span class="toc-text">Hi3861鐨勫熀纭€鍐呮牳寮€鍙?</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%A0%E2%82%AC%E6%B6%94%E5%A0%9F%E6%A7%B8%E9%8D%90%E5%91%AE%E7%89%B3%E9%94%9B"><span class="toc-number">1.5.1.</span> <span class="toc-text">浠€涔堟槸鍐呮牳锛?</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Openharmony%E9%8D%90%E5%91%AE%E7%89%B3"><span class="toc-number">1.5.1.1.</span> <span class="toc-text">Openharmony鍐呮牳</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#LiteOS-M%E9%8D%90%E5%91%AE%E7%89%B3"><span class="toc-number">1.5.1.2.</span> <span class="toc-text">LiteOS-M鍐呮牳</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#KAL%E9%8E%B6%E5%80%9F%E8%96%84%E7%81%9E"><span class="toc-number">1.5.1.2.1.</span> <span class="toc-text">KAL鎶借薄灞?</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%BE%E8%B7%A8%E2%96%BC%E7%BB%A0%EF%BC%84%E6%82%8A"><span class="toc-number">1.5.2.</span> <span class="toc-text">绾跨▼绠＄悊</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%BE%E8%B7%A8%E2%96%BC%E9%90%98%E8%88%B5%E2%82%AC%E4%BD%BA%E6%AE%91%E6%B5%A0%E5%AC%AC%E7%B2%9B"><span class="toc-number">1.5.2.1.</span> <span class="toc-text">绾跨▼鐘舵€佺殑浠嬬粛</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%8D%97%E6%9B%A0%E5%9A%8E%E7%BB%8B%E5%AC%A9%E5%A8%87%E9%90%A2%E3%84%A6%E7%A5%A6%E7%BB%8B"><span class="toc-number">1.5.2.2.</span> <span class="toc-text">鍗曠嚎绋嬩娇鐢ㄦ祦绋?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%BE%B6%E6%B0%B1%E5%9A%8E%E7%BB%8B%E5%AC%A9%E5%A8%87%E9%90%A2%E3%84%A6%E7%A5%A6%E7%BB%8B"><span class="toc-number">1.5.2.3.</span> <span class="toc-text">澶氱嚎绋嬩娇鐢ㄦ祦绋?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%BE%B6%E6%B0%B1%E5%9A%8E%E7%BB%8B%E5%AC%AC%E6%AE%91%E7%81%8F%E4%BD%BD%EE%97%8A"><span class="toc-number">1.5.2.4.</span> <span class="toc-text">澶氱嚎绋嬬殑灏佽</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9D%9E%EE%88%99%E6%AC%A2%E7%80%B9%E6%B0%AD%E6%A4%82%E9%8D%A3"><span class="toc-number">1.5.3.</span> <span class="toc-text">杞欢瀹氭椂鍣?</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9D%9E%EE%88%99%E6%AC%A2%E7%80%B9%E6%B0%AD%E6%A4%82%E9%8D%A3%E3%84%A7%E6%AE%91%E6%B5%A0%E5%AC%AC%E7%B2%9B"><span class="toc-number">1.5.3.1.</span> <span class="toc-text">杞欢瀹氭椂鍣ㄧ殑浠嬬粛</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9D%9E%EE%88%99%E6%AC%A2%E7%80%B9%E6%B0%AD%E6%A4%82%E9%8D%A3%E3%84%A4%E5%A8%87%E9%90%A2%E3%84%A6%E7%A5%A6%E7%BB%8B"><span class="toc-number">1.5.3.2.</span> <span class="toc-text">杞欢瀹氭椂鍣ㄤ娇鐢ㄦ祦绋?</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%9C%E6%8E%93%E6%9E%BC%E9%96%BF"><span class="toc-number">1.5.4.</span> <span class="toc-text">浜掓枼閿?</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%9C%E6%8E%93%E6%9E%BC%E9%96%BF%E4%BD%B7%E7%B2%99%E7%BC%81"><span class="toc-number">1.5.4.1.</span> <span class="toc-text">浜掓枼閿佷粙缁?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%9C%E6%8E%93%E6%9E%BC%E9%96%BF%E4%BD%BA%E6%AE%91%E6%B5%A3%E8%B7%A8%E6%95%A4%E5%A8%B4%E4%BD%BA%E2%96%BC"><span class="toc-number">1.5.4.2.</span> <span class="toc-text">浜掓枼閿佺殑浣跨敤娴佺▼</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%9C%E6%8E%93%E6%9E%BC%E9%96%BF%E4%BD%B9%EE%94%8D%E6%B8%9A%E5%AC%A9%E7%B6%8B%E6%A5%A0"><span class="toc-number">1.5.4.3.</span> <span class="toc-text">浜掓枼閿佹渚嬩綋楠?</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%87%E2%80%B3%E5%BD%BF%E9%96%B2"><span class="toc-number">1.5.5.</span> <span class="toc-text">淇″彿閲?</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B7%87%E2%80%B3%E5%BD%BF%E9%96%B2%E5%BF%8E%E7%B2%99%E7%BC%81"><span class="toc-number">1.5.5.1.</span> <span class="toc-text">淇″彿閲忎粙缁?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B7%87%E2%80%B3%E5%BD%BF%E9%96%B2%E5%BF%95%E6%AE%91%E6%B5%A3%E8%B7%A8%E6%95%A4%E5%A8%B4%E4%BD%BA%E2%96%BC"><span class="toc-number">1.5.5.2.</span> <span class="toc-text">淇″彿閲忕殑浣跨敤娴佺▼</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A8%91%E5%A0%9F%E4%BC%85%E9%97%83%E7%86%B7%E5%9E%AA"><span class="toc-number">1.5.6.</span> <span class="toc-text">娑堟伅闃熷垪</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A8%91%E5%A0%9F%E4%BC%85%E9%97%83%E7%86%B7%E5%9E%AA%E6%B5%A0%E5%AC%AC%E7%B2%9B"><span class="toc-number">1.5.6.1.</span> <span class="toc-text">娑堟伅闃熷垪浠嬬粛</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A8%91%E5%A0%9F%E4%BC%85%E9%97%83%E7%86%B7%E5%9E%AA%E6%B5%A3%E8%B7%A8%E6%95%A4%E5%A8%B4%E4%BD%BA%E2%96%BC"><span class="toc-number">1.5.6.2.</span> <span class="toc-text">娑堟伅闃熷垪浣跨敤娴佺▼</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%92%87%E5%AD%98%E6%A7%91"><span class="toc-number">1.5.7.</span> <span class="toc-text">璇存槑</span></a></li></ol></li></ol></li></ol>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="Ryanzhang66" class="lazyload">
+  <div class="sidebar-author-name">Ryanzhang66</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">2</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">1</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">3</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+</div>
+</div>
+  </div>
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+</nav>
+
+    </div>
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+
+  <script>
+    var setupFirework = () => {
+      if (!false || !window.matchMedia('(max-width: 768px)').matches) {
+        window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'));
+      }
+    }
+  </script>
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.2.0/dist/index.umd.js" integrity="sha384-qi9WggRt19tv8Vc7pCHW3ulMNLwrn515zaLEWZjl1px07vz8+pUoWX8n1rgq282T" crossorigin="anonymous" onload="setupFirework()" defer></script>
+
+
+  
+<script src="https://npm.webcache.cn/theme-shokax-pjax@0.0.3/dist/index.umd.js" integrity="sha384-xneY1WY8hOfUzswrE4CrYq35N4BdVcxqxwHPr9zawE&#x2F;jMSCxD+jAPU55x&#x2F;jj3wlf" crossorigin="anonymous"></script>
+
+  
+<script src="/js/pjax.js"></script>
+
+
+  <script>
+    var setupLive2d = () => {
+      live2d.init("https://fastly.jsdelivr.net/gh/D-Sketon/plugin-live2d/", {themeTipsPath: ""});
+    }
+  </script>
+  
+<script src="https://fastly.jsdelivr.net/gh/D-Sketon/plugin-live2d/js/live2d-autoload.js" onload="setupLive2d()" async></script>
+
+
+  
+<script src="https://npm.webcache.cn/live2d-widgets@0.9.0/autoload.js" integrity="sha384-poTN7wN&#x2F;SqNhQqo3jdFeX20ikddWeFGkUkDEzsKjgH&#x2F;ez8aQLn81oI0Cw6q5xNyB" crossorigin="anonymous"></script>
+
+
+
+<div id="lazy-script">
+  <div>
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "Ryanzhang66",
+          title: "Hi3861嵌软开发全流程",
+          url: "https://ryanzhang66.github.io/2026/04/08/hi3861-embedded-soft-dev-full-process/",
+          excerpt: "",
+          description: "",
+          stripContent: " 纭欢瀛︿範浠撳簱 鍓嶈█ [Hi3861鐨勫涔狅紙OpenHarmony鍗楀悜寮€鍙戯級](#hi3861鐨勫涔爋penharmony鍗楀悜寮€鍙? [windows涓嬬殑DevEco Device Tool寮€鍙戠幆澧冩惌寤篯(#windows涓嬬殑deveco-device-tool寮€鍙戠幆澧冩惌寤? [鍒涘缓宸ョ▼骞惰幏鍙栨簮鐮乚(#鍒涘缓宸ョ▼骞惰幏鍙栨簮鐮? 闄勶細瀵煎叆SDK鍜岀紪璇戝伐鍏峰寘 楠岃瘉鐜   [蹇€熷叆闂╙(#蹇€熷叆闂? 纭畾鐩綍缁撴瀯 缂栧啓",
+          date: "Wed Apr 08 2026 20:15:00 GMT+0800",
+          updated: "Wed Apr 08 2026 20:52:12 GMT+0800",
+          cover: "/images/banner.webp",
+        };
+      </script>
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+      
+<script src="/js/tabs.js" data-pjax defer></script>
+
+      <script type="module" data-pjax>
+        (async () => {
+          const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+          const initPswp = (gallery, children) => {
+            if (_$$(`${gallery} ${children}`).length > 0) {
+              new PhotoSwipeLightbox({
+                gallery,
+                children,
+                pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+              }).init();
+            }
+          }
+          const pswp = () => {
+            initPswp('.article-entry', 'a.article-gallery-item');
+            initPswp('.article-gallery', 'a.article-gallery-item');
+          }
+          pswp();
+        })();
+      </script>
+        
+
+
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.12.0' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+    <script>
+    var setupAPlayer = () => {
+      if (!true || !window.matchMedia('(max-width: 768px)').matches) {
+        if (window.matchMedia('(max-width: 959px)').matches) {
+          const aplayer = _$('#aplayer');
+          if (aplayer) {
+            const aside = aplayer.parentNode?.parentNode;
+            if (aside?.tagName === 'ASIDE') {
+              aplayer.removeAttribute('data-aos');
+              aplayer.parentNode.removeChild(aplayer);
+              document.body.appendChild(aplayer);
+            }
+          }
+        }
+        new APlayer({
+          theme: "var(--color-link)",
+          container: document.getElementById('aplayer'),
+          audio: [] || [],
+          fixed: isMobile ? true : (null || false),
+          autoplay: null || false,
+          loop: '' || 'all',
+          order: '' || 'list',
+          preload: '' || 'auto',
+          volume: null || 0.7,
+          mutex: null || true,
+          listFolded: null || false,
+          lrcType: null || 0,
+        });
+      }
+    }
+    </script>
+  
+<script src="https://npm.webcache.cn/aplayer@1.10.1/dist/APlayer.min.js" integrity="sha384-gdGYZwHnfJM54evoZhpO0s6ZF5BQiybkiyW7VXr+h5UfruuRL&#x2F;aORyw+5+HZoU6e" crossorigin="anonymous" defer onload="setupAPlayer()"></script>
+
+
+
+  </body>
+  </html>
